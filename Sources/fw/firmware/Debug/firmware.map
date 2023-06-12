@@ -1,0 +1,556 @@
+Archive member included because of file (symbol)
+
+d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+                              function.o (__udivmodqi4)
+d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+                              function.o (__udivmodhi4)
+d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                              d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o (exit)
+d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                              firmware.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+TX_tmp              0x1               firmware.o
+RX_buff             0xe               firmware.o
+L                   0x168             firmware.o
+TX_tmp2             0x1               firmware.o
+TX_buff             0x12              firmware.o
+
+Discarded input sections
+
+ .data          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ .bss           0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ .text          0x00000000        0x0 firmware.o
+ .data          0x00000000        0x0 firmware.o
+ .bss           0x00000000        0x0 firmware.o
+ .bss.a         0x00000000        0x0 firmware.o
+ .data          0x00000000        0x0 func.o
+ .bss           0x00000000        0x0 func.o
+ .text          0x00000000        0x0 function.o
+ .data          0x00000000        0x0 function.o
+ .bss           0x00000000        0x0 function.o
+ .text.clear_balansir
+                0x00000000        0x0 function.o
+ .text          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+ .data          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+ .bss           0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+ .text          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .data          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .bss           0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .text          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+LOAD firmware.o
+LOAD func.o
+LOAD function.o
+START GROUP
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4\libm.a
+END GROUP
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4\libc.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0xdaa
+ *(.vectors)
+ .vectors       0x00000000       0x34 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000034       0x15 function.o
+                0x00000034                zgen
+                0x0000004a                . = ALIGN (0x2)
+ *fill*         0x00000049        0x1 00
+                0x0000004a                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000004a        0x0 linker stubs
+ *(.trampolines*)
+                0x0000004a                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000004a                __ctors_start = .
+ *(.ctors)
+                0x0000004a                __ctors_end = .
+                0x0000004a                __dtors_start = .
+ *(.dtors)
+                0x0000004a                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000004a        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+                0x0000004a                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000004a        0xc d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000056       0x10 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x00000056                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000066        0x4 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ *(.init9)
+ *(.text)
+ .text          0x0000006a        0x2 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+                0x0000006a                __vector_22
+                0x0000006a                __vector_1
+                0x0000006a                __vector_24
+                0x0000006a                __vector_12
+                0x0000006a                __bad_interrupt
+                0x0000006a                __vector_6
+                0x0000006a                __vector_3
+                0x0000006a                __vector_23
+                0x0000006a                __vector_25
+                0x0000006a                __vector_11
+                0x0000006a                __vector_13
+                0x0000006a                __vector_17
+                0x0000006a                __vector_7
+                0x0000006a                __vector_5
+                0x0000006a                __vector_4
+                0x0000006a                __vector_2
+                0x0000006a                __vector_21
+                0x0000006a                __vector_15
+                0x0000006a                __vector_8
+                0x0000006a                __vector_14
+                0x0000006a                __vector_10
+                0x0000006a                __vector_20
+ .text          0x0000006c       0xf0 func.o
+                0x000000b0                asm_ui
+                0x0000006c                asm_add
+                0x00000108                asm_divB
+                0x000000e4                asm_addA
+                0x00000090                asm_div
+                0x0000015c                . = ALIGN (0x2)
+ *(.text.*)
+ .text.__vector_9
+                0x0000015c       0x88 firmware.o
+                0x0000015c                __vector_9
+ .text.__vector_18
+                0x000001e4       0x4a firmware.o
+                0x000001e4                __vector_18
+ .text.__vector_19
+                0x0000022e       0x50 firmware.o
+                0x0000022e                __vector_19
+ .text.main     0x0000027e      0x1fa firmware.o
+                0x0000027e                main
+ .text.__vector_16
+                0x00000478       0x60 firmware.o
+                0x00000478                __vector_16
+ .text.init     0x000004d8       0x72 function.o
+                0x000004d8                init
+ .text.reg      0x0000054a       0x26 function.o
+                0x0000054a                reg
+ .text.dinamic  0x00000570       0x62 function.o
+                0x00000570                dinamic
+ .text.startADC
+                0x000005d2       0x12 function.o
+                0x000005d2                startADC
+ .text.hexdec   0x000005e4       0x3a function.o
+                0x000005e4                hexdec
+ .text.ee_read  0x0000061e       0x10 function.o
+                0x0000061e                ee_read
+ .text.ee_write
+                0x0000062e       0x26 function.o
+                0x0000062e                ee_write
+ .text.button   0x00000654       0x6e function.o
+                0x00000654                button
+ .text.boot_constanta
+                0x000006c2       0xa0 function.o
+                0x000006c2                boot_constanta
+ .text.calibr   0x00000762       0x1e function.o
+                0x00000762                calibr
+ .text.balansir
+                0x00000780       0xb8 function.o
+                0x00000780                balansir
+ .text.crc16    0x00000838       0x48 function.o
+                0x00000838                crc16
+ .text.send_system
+                0x00000880       0x4e function.o
+                0x00000880                send_system
+ .text.send_const
+                0x000008ce       0x98 function.o
+                0x000008ce                send_const
+ .text.write_calibr
+                0x00000966       0xa0 function.o
+                0x00000966                write_calibr
+ .text.send_log
+                0x00000a06       0x56 function.o
+                0x00000a06                send_log
+ .text.znak     0x00000a5c       0x1e function.o
+                0x00000a5c                znak
+ .text.disp_inf
+                0x00000a7a       0x2e function.o
+                0x00000a7a                disp_inf
+ .text.clear_RX
+                0x00000aa8        0xa function.o
+                0x00000aa8                clear_RX
+ .text.write_cap
+                0x00000ab2       0x2c function.o
+                0x00000ab2                write_cap
+ .text.cell_capacity
+                0x00000ade       0xb4 function.o
+                0x00000ade                cell_capacity
+ .text.ups      0x00000b92      0x1d4 function.o
+                0x00000b92                ups
+ .text.libgcc   0x00000d66       0x18 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodqi4.o)
+                0x00000d66                __udivmodqi4
+ .text.libgcc   0x00000d7e       0x28 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+                0x00000d7e                __udivmodhi4
+                0x00000da6                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00000da6        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                0x00000da6                exit
+                0x00000da6                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00000da6        0x4 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000daa                _etext = .
+
+.data           0x00800100        0x0 load address 0x00000daa
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800100                . = ALIGN (0x2)
+                0x00800100                _edata = .
+                0x00800100                PROVIDE (__data_end, .)
+
+.bss            0x00800100      0x1d2
+                0x00800100                PROVIDE (__bss_start, .)
+ *(.bss)
+ *(.bss*)
+ .bss.razrad    0x00800100        0x1 firmware.o
+                0x00800100                razrad
+ .bss.led       0x00800101        0x3 firmware.o
+                0x00800101                led
+ .bss.v         0x00800104        0x1 firmware.o
+                0x00800104                v
+ .bss.summa     0x00800105        0x4 firmware.o
+                0x00800105                summa
+ .bss.kanal     0x00800109        0x1 firmware.o
+                0x00800109                kanal
+ .bss.signals   0x0080010a        0xa firmware.o
+                0x0080010a                signals
+ .bss.tmp       0x00800114        0x1 firmware.o
+                0x00800114                tmp
+ .bss.tmp1      0x00800115        0x1 firmware.o
+                0x00800115                tmp1
+ .bss.b_timer   0x00800116        0x1 firmware.o
+                0x00800116                b_timer
+ .bss.b_timer2  0x00800117        0x1 firmware.o
+                0x00800117                b_timer2
+ .bss.menu      0x00800118        0x1 firmware.o
+                0x00800118                menu
+ .bss.tmp16     0x00800119        0x2 firmware.o
+                0x00800119                tmp16
+ .bss.system    0x0080011b       0x10 firmware.o
+                0x0080011b                system
+ .bss.calibr_cells
+                0x0080012b        0x5 firmware.o
+                0x0080012b                calibr_cells
+ .bss.u_param   0x00800130        0x6 firmware.o
+                0x00800130                u_param
+ .bss.BT1       0x00800136        0x2 firmware.o
+                0x00800136                BT1
+ .bss.BT2       0x00800138        0x2 firmware.o
+                0x00800138                BT2
+ .bss.RX_       0x0080013a        0x1 firmware.o
+                0x0080013a                RX_
+ .bss.TX_pointer
+                0x0080013b        0x1 firmware.o
+                0x0080013b                TX_pointer
+ .bss.RTC_s     0x0080013c        0x1 firmware.o
+                0x0080013c                RTC_s
+ .bss.RTC_m     0x0080013d        0x1 firmware.o
+                0x0080013d                RTC_m
+ .bss.RTC_h     0x0080013e        0x1 firmware.o
+                0x0080013e                RTC_h
+ .bss.ups_mode  0x0080013f        0x1 firmware.o
+                0x0080013f                ups_mode
+ .bss.C60       0x00800140        0x4 firmware.o
+                0x00800140                C60
+ .bss.minut_flag
+                0x00800144        0x1 firmware.o
+                0x00800144                minut_flag
+ .bss.C         0x00800145        0x1 firmware.o
+                0x00800145                C
+ .bss.log_point
+                0x00800146        0x1 firmware.o
+                0x00800146                log_point
+ .bss.send_pointer
+                0x00800147        0x1 firmware.o
+                0x00800147                send_pointer
+ *(COMMON)
+ COMMON         0x00800148      0x18a firmware.o
+                0x00800148                TX_tmp
+                0x00800149                RX_buff
+                0x00800157                L
+                0x008002bf                TX_tmp2
+                0x008002c0                TX_buff
+                0x008002d2                PROVIDE (__bss_end, .)
+                0x00000daa                __data_load_start = LOADADDR (.data)
+                0x00000daa                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x008002d2        0x0
+                0x008002d2                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x008002d2                PROVIDE (__noinit_end, .)
+                0x008002d2                _end = .
+                0x008002d2                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x130
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x40 firmware.o
+ .debug_aranges
+                0x00000040       0x20 func.o
+ .debug_aranges
+                0x00000060       0xd0 function.o
+
+.debug_pubnames
+                0x00000000      0x305
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x1c1 firmware.o
+ .debug_pubnames
+                0x000001c1      0x144 function.o
+
+.debug_info     0x00000000      0xc6f
+ *(.debug_info)
+ .debug_info    0x00000000      0x3db firmware.o
+ .debug_info    0x000003db       0x57 func.o
+ .debug_info    0x00000432      0x83d function.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x3f2
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xb6 firmware.o
+ .debug_abbrev  0x000000b6       0x14 func.o
+ .debug_abbrev  0x000000ca      0x328 function.o
+
+.debug_line     0x00000000      0xe56
+ *(.debug_line)
+ .debug_line    0x00000000      0x34b firmware.o
+ .debug_line    0x0000034b       0xb9 func.o
+ .debug_line    0x00000404      0xa52 function.o
+
+.debug_frame    0x00000000      0x1e0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x60 firmware.o
+ .debug_frame   0x00000060      0x180 function.o
+
+.debug_str      0x00000000      0x2cf
+ *(.debug_str)
+ .debug_str     0x00000000      0x17f firmware.o
+                                0x1ba (size before relaxing)
+ .debug_str     0x0000017f      0x150 function.o
+                                0x2a1 (size before relaxing)
+
+.debug_loc      0x00000000      0x43c
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x43c function.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(firmware.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x100
+ .debug_ranges  0x00000000       0x38 firmware.o
+ .debug_ranges  0x00000038       0xc8 function.o

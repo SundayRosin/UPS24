@@ -1,0 +1,2797 @@
+
+firmware.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000daa  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          000001d2  00800100  00800100  00000e1e  2**0
+                  ALLOC
+  2 .debug_aranges 00000130  00000000  00000000  00000e20  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 00000305  00000000  00000000  00000f50  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000c6f  00000000  00000000  00001255  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000003f2  00000000  00000000  00001ec4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000e56  00000000  00000000  000022b6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000001e0  00000000  00000000  0000310c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000002cf  00000000  00000000  000032ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000043c  00000000  00000000  000035bb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000100  00000000  00000000  000039f7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+	C=0;	
+}
+
+//выключает балансир
+void clear_balansir()
+{
+   0:	24 c0       	rjmp	.+72     	; 0x4a <__ctors_end>
+   2:	33 c0       	rjmp	.+102    	; 0x6a <__bad_interrupt>
+   4:	32 c0       	rjmp	.+100    	; 0x6a <__bad_interrupt>
+   6:	31 c0       	rjmp	.+98     	; 0x6a <__bad_interrupt>
+   8:	30 c0       	rjmp	.+96     	; 0x6a <__bad_interrupt>
+   a:	2f c0       	rjmp	.+94     	; 0x6a <__bad_interrupt>
+   c:	2e c0       	rjmp	.+92     	; 0x6a <__bad_interrupt>
+   e:	2d c0       	rjmp	.+90     	; 0x6a <__bad_interrupt>
+  10:	2c c0       	rjmp	.+88     	; 0x6a <__bad_interrupt>
+  12:	a4 c0       	rjmp	.+328    	; 0x15c <__vector_9>
+  14:	2a c0       	rjmp	.+84     	; 0x6a <__bad_interrupt>
+  16:	29 c0       	rjmp	.+82     	; 0x6a <__bad_interrupt>
+  18:	28 c0       	rjmp	.+80     	; 0x6a <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__bad_interrupt>
+  1c:	26 c0       	rjmp	.+76     	; 0x6a <__bad_interrupt>
+  1e:	25 c0       	rjmp	.+74     	; 0x6a <__bad_interrupt>
+  20:	2b c2       	rjmp	.+1110   	; 0x478 <__vector_16>
+  22:	23 c0       	rjmp	.+70     	; 0x6a <__bad_interrupt>
+  24:	df c0       	rjmp	.+446    	; 0x1e4 <__vector_18>
+  26:	03 c1       	rjmp	.+518    	; 0x22e <__vector_19>
+  28:	20 c0       	rjmp	.+64     	; 0x6a <__bad_interrupt>
+  2a:	1f c0       	rjmp	.+62     	; 0x6a <__bad_interrupt>
+  2c:	1e c0       	rjmp	.+60     	; 0x6a <__bad_interrupt>
+  2e:	1d c0       	rjmp	.+58     	; 0x6a <__bad_interrupt>
+  30:	1c c0       	rjmp	.+56     	; 0x6a <__bad_interrupt>
+  32:	1b c0       	rjmp	.+54     	; 0x6a <__bad_interrupt>
+
+00000034 <zgen>:
+  34:	28 ee 34 a4 e2 a1 21 ec 20 a0 ff f7 60 23 39 26     (.4...!. ...`#9&
+  44:	31 71 3b 79 62 00                                   1q;yb.
+
+0000004a <__ctors_end>:
+  4a:	11 24       	eor	r1, r1
+  4c:	1f be       	out	0x3f, r1	; 63
+  4e:	cf ef       	ldi	r28, 0xFF	; 255
+  50:	d2 e0       	ldi	r29, 0x02	; 2
+  52:	de bf       	out	0x3e, r29	; 62
+  54:	cd bf       	out	0x3d, r28	; 61
+
+00000056 <__do_clear_bss>:
+  56:	12 e0       	ldi	r17, 0x02	; 2
+  58:	a0 e0       	ldi	r26, 0x00	; 0
+  5a:	b1 e0       	ldi	r27, 0x01	; 1
+  5c:	01 c0       	rjmp	.+2      	; 0x60 <.do_clear_bss_start>
+
+0000005e <.do_clear_bss_loop>:
+  5e:	1d 92       	st	X+, r1
+
+00000060 <.do_clear_bss_start>:
+  60:	a2 3d       	cpi	r26, 0xD2	; 210
+  62:	b1 07       	cpc	r27, r17
+  64:	e1 f7       	brne	.-8      	; 0x5e <.do_clear_bss_loop>
+  66:	0b d1       	rcall	.+534    	; 0x27e <main>
+  68:	9e c6       	rjmp	.+3388   	; 0xda6 <_exit>
+
+0000006a <__bad_interrupt>:
+  6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
+
+0000006c <asm_add>:
+ ;Экспортируем asm_func
+.global asm_add
+.extern summa
+asm_add:
+;аргумент   r24 AH r22 AL
+ldi r30,lo8(summa) ;загружаем в Z адресс переменной
+  6c:	e5 e0       	ldi	r30, 0x05	; 5
+ldi r31,hi8(summa)
+  6e:	f1 e0       	ldi	r31, 0x01	; 1
+
+ld r16,Z+ ; извлекаем переменную
+  70:	01 91       	ld	r16, Z+
+ld r17,Z+
+  72:	11 91       	ld	r17, Z+
+ld r18,Z+
+  74:	21 91       	ld	r18, Z+
+ld r19,Z
+  76:	30 81       	ld	r19, Z
+;прибавляю
+clr r20
+  78:	44 27       	eor	r20, r20
+add r16,r22 ;+AL
+  7a:	06 0f       	add	r16, r22
+adc r17,r24 ;+AH;
+  7c:	18 1f       	adc	r17, r24
+adc r18,r20 ;+0
+  7e:	24 1f       	adc	r18, r20
+adc r19,r20 ;+0
+  80:	34 1f       	adc	r19, r20
+ldi r30,lo8(summa) ;загружаем в Z адресс переменной
+  82:	e5 e0       	ldi	r30, 0x05	; 5
+ldi r31,hi8(summa)
+  84:	f1 e0       	ldi	r31, 0x01	; 1
+
+;сохраняем переменную
+st Z+,r16
+  86:	01 93       	st	Z+, r16
+st Z+,r17
+  88:	11 93       	st	Z+, r17
+st Z+,r18
+  8a:	21 93       	st	Z+, r18
+st Z ,r19
+  8c:	30 83       	st	Z, r19
+
+ret
+  8e:	08 95       	ret
+
+00000090 <asm_div>:
+.global asm_div
+.extern summa
+asm_div:
+;аргумент uint32  r25:r24:r23:r22
+;r18 r27
+ldi r30,lo8(summa)
+  90:	e5 e0       	ldi	r30, 0x05	; 5
+ldi r31,hi8(summa)
+  92:	f1 e0       	ldi	r31, 0x01	; 1
+
+ld r22,Z+
+  94:	61 91       	ld	r22, Z+
+ld r23,Z+
+  96:	71 91       	ld	r23, Z+
+ld r24,Z+
+  98:	81 91       	ld	r24, Z+
+ld r25,Z
+  9a:	90 81       	ld	r25, Z
+
+ldi r18,6 ;6 сдвигов  2^6=64
+  9c:	26 e0       	ldi	r18, 0x06	; 6
+
+0000009e <div>:
+ div:			
+	clc ;cбрасываю флаг переноса
+  9e:	88 94       	clc
+    ror r25  ;сдвигаем значение вправо сначала старший \n\t"
+  a0:	97 95       	ror	r25
+	ror r24  ;потом младший через флаг переноса \n\t"
+  a2:	87 95       	ror	r24
+	ror r23
+  a4:	77 95       	ror	r23
+	ror r22
+  a6:	67 95       	ror	r22
+	dec r18;-1 cчетчик 
+  a8:	2a 95       	dec	r18
+	brne div  ;проверка условия
+  aa:	c9 f7       	brne	.-14     	; 0x9e <div>
+	movw r24,r22;копирую слово		 
+  ac:	cb 01       	movw	r24, r22
+
+ret
+  ae:	08 95       	ret
+
+000000b0 <asm_ui>:
+
+; входные данные r25:r24  r23:r22
+;       C=          A    *   B 
+;  r11:r10:r9  
+
+clr r11    ;очищаем на всякий случай
+  b0:	bb 24       	eor	r11, r11
+clr r10    ;
+  b2:	aa 24       	eor	r10, r10
+mov r8,r22 ; копируем младший BL, в Rr
+  b4:	86 2e       	mov	r8, r22
+mul  r24,r8 ;умножаю младшие регистры AL*BL
+  b6:	88 9d       	mul	r24, r8
+mov r9,r0  ;из r0 младший результат операции mul в CL0
+  b8:	90 2c       	mov	r9, r0
+mov r10,r1 ;из r1 старший результата операции mul в СH0
+  ba:	a1 2c       	mov	r10, r1
+
+mul r25,r8 ; AH*BL  старший А на младший B
+  bc:	98 9d       	mul	r25, r8
+add r10,r0 ;CH0+ L  
+  be:	a0 0c       	add	r10, r0
+adc r11,r1 ;CL1+H 
+  c0:	b1 1c       	adc	r11, r1
+
+;mul dataL,KoeffH ;умножаем младший на старший
+mov r8,r23 ; BH to Rr
+  c2:	87 2e       	mov	r8, r23
+mul r24,r8 ; AL*BH
+  c4:	88 9d       	mul	r24, r8
+add r10,r0 ;CH0+L
+  c6:	a0 0c       	add	r10, r0
+adc r11,r1 ;CH1+H
+  c8:	b1 1c       	adc	r11, r1
+
+mul r25,r8 ;AH*BH
+  ca:	98 9d       	mul	r25, r8
+add r11,r0 ;CL1+L
+  cc:	b0 0c       	add	r11, r0
+;add r12,r1 ;4-й разряд нам тут не требуется
+
+;деление на 128
+;перемещаем в регистры
+mov r26,r11
+  ce:	ab 2d       	mov	r26, r11
+mov r25,r10
+  d0:	9a 2d       	mov	r25, r10
+mov r24,r9
+  d2:	89 2d       	mov	r24, r9
+
+;деление сдвигом на 128
+ldi r18,7 ;7 сдвигов  2^7=128
+  d4:	27 e0       	ldi	r18, 0x07	; 7
+
+000000d6 <div128>:
+ div128:			
+	clc ;cбрасываю флаг переноса
+  d6:	88 94       	clc
+    ror r26  ;сдвигаем значение вправо сначала старший
+  d8:	a7 95       	ror	r26
+	ror r25  ;потом младший через флаг переноса 
+  da:	97 95       	ror	r25
+	ror r24
+  dc:	87 95       	ror	r24
+	dec r18;-1 cчетчик 
+  de:	2a 95       	dec	r18
+	brne div128  ;проверка условия
+  e0:	d1 f7       	brne	.-12     	; 0xd6 <div128>
+	
+;значение возвращается в регистрах
+;r25:r24
+ret
+  e2:	08 95       	ret
+
+000000e4 <asm_addA>:
+.extern C60
+asm_addA:
+; C  =  C(uint32_t)         +  B(uint16_t) 
+;                             r25:r24
+;адрес С60
+ldi r30,lo8(C60) ;загружаем в Z адресс переменной
+  e4:	e0 e4       	ldi	r30, 0x40	; 64
+ldi r31,hi8(C60)
+  e6:	f1 e0       	ldi	r31, 0x01	; 1
+
+ld r18,Z+ ; извлекаем переменную
+  e8:	21 91       	ld	r18, Z+
+ld r19,Z+
+  ea:	31 91       	ld	r19, Z+
+ld r20,Z+
+  ec:	41 91       	ld	r20, Z+
+ld r21,Z
+  ee:	50 81       	ld	r21, Z
+;ldi r19,0xB3
+;ldi r20,0x02
+;ldi r21,0x00
+
+;прибавляю
+clr r1
+  f0:	11 24       	eor	r1, r1
+add r18,r24 ;+AL
+  f2:	28 0f       	add	r18, r24
+adc r19,r25 ;+AH;
+  f4:	39 1f       	adc	r19, r25
+adc r20,r1 ;+0
+  f6:	41 1d       	adc	r20, r1
+adc r21,r1 ;+0
+  f8:	51 1d       	adc	r21, r1
+
+ldi r30,lo8(C60) ;загружаем в Z адресс переменной
+  fa:	e0 e4       	ldi	r30, 0x40	; 64
+ldi r31,hi8(C60)
+  fc:	f1 e0       	ldi	r31, 0x01	; 1
+;ldi r20,0x02
+;ldi r21,0x00
+
+
+;сохраняем переменную
+st Z+,r18
+  fe:	21 93       	st	Z+, r18
+st Z+,r19
+ 100:	31 93       	st	Z+, r19
+st Z+,r20
+ 102:	41 93       	st	Z+, r20
+st Z ,r21
+ 104:	50 83       	st	Z, r21
+
+ret
+ 106:	08 95       	ret
+
+00000108 <asm_divB>:
+//взято из дезасеблированного хекса
+.global asm_divB
+.extern C60
+asm_divB:
+   ;адрес С60
+     ldi r30,lo8(C60) ;загружаем в Z адресс переменной
+ 108:	e0 e4       	ldi	r30, 0x40	; 64
+     ldi r31,hi8(C60)
+ 10a:	f1 e0       	ldi	r31, 0x01	; 1
+
+     ld r22,Z+ ;извлекаем делимое из памяти
+ 10c:	61 91       	ld	r22, Z+
+     ld r23,Z+ ;сохраняем в регистры
+ 10e:	71 91       	ld	r23, Z+
+     ld r24,Z+
+ 110:	81 91       	ld	r24, Z+
+     ld r25,Z
+ 112:	90 81       	ld	r25, Z
+	           ;делитель у нас константа,    
+	
+	           ;делитель
+	ldi	r18,0x70  ; 0x70   6000
+ 114:	20 e7       	ldi	r18, 0x70	; 112
+	ldi	r19,0x17  ; 0x17	
+ 116:	37 e1       	ldi	r19, 0x17	; 23
+	ldi	r20,0
+ 118:	40 e0       	ldi	r20, 0x00	; 0
+	ldi	r21,0
+ 11a:	50 e0       	ldi	r21, 0x00	; 0
+	; rcall	L058E
+	;----------------------*
+    ; pc=0x58E(0xB1C)
+    ;
+    ;  L058E:
+	ldi	r26,0x21  ;k21 ; .equ	k21	= 0x21; 33d
+ 11c:	a1 e2       	ldi	r26, 0x21	; 33
+	mov	r1,r26
+ 11e:	1a 2e       	mov	r1, r26
+	sub	r26,r26
+ 120:	aa 1b       	sub	r26, r26
+	sub	r27,r27
+ 122:	bb 1b       	sub	r27, r27
+	movw	r30,r26
+ 124:	fd 01       	movw	r30, r26
+	rjmp	L05A1
+ 126:	0d c0       	rjmp	.+26     	; 0x142 <L05A1>
+
+00000128 <L0594>:
+    ;	-----------	jump on last line
+    L0594:
+	rol	r26
+ 128:	aa 1f       	adc	r26, r26
+	rol	r27
+ 12a:	bb 1f       	adc	r27, r27
+	rol	r30
+ 12c:	ee 1f       	adc	r30, r30
+	rol	r31
+ 12e:	ff 1f       	adc	r31, r31
+	cp	r26,r18
+ 130:	a2 17       	cp	r26, r18
+	cpc	r27,r19
+ 132:	b3 07       	cpc	r27, r19
+	cpc	r30,r20
+ 134:	e4 07       	cpc	r30, r20
+	cpc	r31,r21
+ 136:	f5 07       	cpc	r31, r21
+    brcs	L05A1
+ 138:	20 f0       	brcs	.+8      	; 0x142 <L05A1>
+;	-----		branch on last line
+	sub	r26,r18
+ 13a:	a2 1b       	sub	r26, r18
+	sbc	r27,r19
+ 13c:	b3 0b       	sbc	r27, r19
+	sbc	r30,r20
+ 13e:	e4 0b       	sbc	r30, r20
+	sbc	r31,r21
+ 140:	f5 0b       	sbc	r31, r21
+
+00000142 <L05A1>:
+L05A1:
+	rol	r22
+ 142:	66 1f       	adc	r22, r22
+	rol	r23
+ 144:	77 1f       	adc	r23, r23
+	rol	r24
+ 146:	88 1f       	adc	r24, r24
+	rol	r25
+ 148:	99 1f       	adc	r25, r25
+	dec	r1
+ 14a:	1a 94       	dec	r1
+	brne	L0594
+ 14c:	69 f7       	brne	.-38     	; 0x128 <L0594>
+;	-----		branch on last line
+	com	r22
+ 14e:	60 95       	com	r22
+	com	r23
+ 150:	70 95       	com	r23
+	com	r24
+ 152:	80 95       	com	r24
+	com	r25
+ 154:	90 95       	com	r25
+	movw	r18,r22 ;r18 младший бит
+ 156:	9b 01       	movw	r18, r22
+	;movw	r20,r24
+	;movw	r22,r26
+	;movw	r24,r30
+	;sts	D0148,r18
+	
+	mov r24,r18
+ 158:	82 2f       	mov	r24, r18
+ret
+ 15a:	08 95       	ret
+
+0000015c <__vector_9>:
+
+
+ 
+//RTC. Прерывание приходит каждую секунду
+ISR(TIMER2_OVF_vect)
+{
+ 15c:	1f 92       	push	r1
+ 15e:	0f 92       	push	r0
+ 160:	0f b6       	in	r0, 0x3f	; 63
+ 162:	0f 92       	push	r0
+ 164:	11 24       	eor	r1, r1
+ 166:	8f 93       	push	r24
+ 168:	9f 93       	push	r25
+	//если вошли в режим запуска замера, счетчик был сброшен(RTC_s=0;) в button()
+	if((RTC_s==10)&(menu>=5)) //жду 10сек
+ 16a:	90 91 3c 01 	lds	r25, 0x013C
+ 16e:	80 91 18 01 	lds	r24, 0x0118
+ 172:	9a 30       	cpi	r25, 0x0A	; 10
+ 174:	79 f4       	brne	.+30     	; 0x194 <__vector_9+0x38>
+ 176:	85 30       	cpi	r24, 0x05	; 5
+ 178:	58 f1       	brcs	.+86     	; 0x1d0 <__vector_9+0x74>
+	{
+		if (menu==6){menu=0; ups_mode=5;} //запуск режима замера емкости батареи
+ 17a:	86 30       	cpi	r24, 0x06	; 6
+ 17c:	31 f4       	brne	.+12     	; 0x18a <__vector_9+0x2e>
+ 17e:	10 92 18 01 	sts	0x0118, r1
+ 182:	85 e0       	ldi	r24, 0x05	; 5
+ 184:	80 93 3f 01 	sts	0x013F, r24
+ 188:	23 c0       	rjmp	.+70     	; 0x1d0 <__vector_9+0x74>
+			else {menu=0;ups_mode=0;} //перевод  в обычный режим.
+ 18a:	10 92 18 01 	sts	0x0118, r1
+ 18e:	10 92 3f 01 	sts	0x013F, r1
+ 192:	1e c0       	rjmp	.+60     	; 0x1d0 <__vector_9+0x74>
+			 
+	}
+  //Часы реального времени
+  if(RTC_s==59) //прошла минута
+ 194:	9b 33       	cpi	r25, 0x3B	; 59
+ 196:	e1 f4       	brne	.+56     	; 0x1d0 <__vector_9+0x74>
+  {
+	 minut_flag+=128; //говорю что прошла минута!	  
+ 198:	80 91 44 01 	lds	r24, 0x0144
+ 19c:	80 58       	subi	r24, 0x80	; 128
+ 19e:	80 93 44 01 	sts	0x0144, r24
+	  if(RTC_m==59)
+ 1a2:	80 91 3d 01 	lds	r24, 0x013D
+ 1a6:	8b 33       	cpi	r24, 0x3B	; 59
+ 1a8:	69 f4       	brne	.+26     	; 0x1c4 <__vector_9+0x68>
+	  {
+		  if (RTC_h<0xff)
+ 1aa:	80 91 3e 01 	lds	r24, 0x013E
+ 1ae:	8f 3f       	cpi	r24, 0xFF	; 255
+ 1b0:	21 f0       	breq	.+8      	; 0x1ba <__vector_9+0x5e>
+		  {
+			  RTC_h++;
+ 1b2:	8f 5f       	subi	r24, 0xFF	; 255
+ 1b4:	80 93 3e 01 	sts	0x013E, r24
+ 1b8:	02 c0       	rjmp	.+4      	; 0x1be <__vector_9+0x62>
+		  }
+		  else {RTC_h=0;}
+ 1ba:	10 92 3e 01 	sts	0x013E, r1
+		  
+		  RTC_m=0;
+ 1be:	10 92 3d 01 	sts	0x013D, r1
+ 1c2:	03 c0       	rjmp	.+6      	; 0x1ca <__vector_9+0x6e>
+	  }
+	  else
+	  {
+		  RTC_m++;
+ 1c4:	8f 5f       	subi	r24, 0xFF	; 255
+ 1c6:	80 93 3d 01 	sts	0x013D, r24
+	  }
+	  RTC_s=0;  
+ 1ca:	10 92 3c 01 	sts	0x013C, r1
+ 1ce:	03 c0       	rjmp	.+6      	; 0x1d6 <__vector_9+0x7a>
+  } 
+  else
+  {
+	 
+	  RTC_s++;
+ 1d0:	9f 5f       	subi	r25, 0xFF	; 255
+ 1d2:	90 93 3c 01 	sts	0x013C, r25
+  }
+
+}
+ 1d6:	9f 91       	pop	r25
+ 1d8:	8f 91       	pop	r24
+ 1da:	0f 90       	pop	r0
+ 1dc:	0f be       	out	0x3f, r0	; 63
+ 1de:	0f 90       	pop	r0
+ 1e0:	1f 90       	pop	r1
+ 1e2:	18 95       	reti
+
+000001e4 <__vector_18>:
+    
+}
+
+//Обработчик прерыванию по приему USART
+ISR(USART_RX_vect)
+{
+ 1e4:	1f 92       	push	r1
+ 1e6:	0f 92       	push	r0
+ 1e8:	0f b6       	in	r0, 0x3f	; 63
+ 1ea:	0f 92       	push	r0
+ 1ec:	11 24       	eor	r1, r1
+ 1ee:	8f 93       	push	r24
+ 1f0:	9f 93       	push	r25
+ 1f2:	ef 93       	push	r30
+ 1f4:	ff 93       	push	r31
+	if(RX_<13)
+ 1f6:	90 91 3a 01 	lds	r25, 0x013A
+ 1fa:	9d 30       	cpi	r25, 0x0D	; 13
+ 1fc:	58 f4       	brcc	.+22     	; 0x214 <__vector_18+0x30>
+	{ 
+	  RX_buff[RX_] =UDR0; //считали данные
+ 1fe:	80 91 c6 00 	lds	r24, 0x00C6
+ 202:	e9 2f       	mov	r30, r25
+ 204:	f0 e0       	ldi	r31, 0x00	; 0
+ 206:	e7 5b       	subi	r30, 0xB7	; 183
+ 208:	fe 4f       	sbci	r31, 0xFE	; 254
+ 20a:	80 83       	st	Z, r24
+	  //RX_buff[0]=UDR0; //считали данные
+	 RX_++;
+ 20c:	9f 5f       	subi	r25, 0xFF	; 255
+ 20e:	90 93 3a 01 	sts	0x013A, r25
+ 212:	04 c0       	rjmp	.+8      	; 0x21c <__vector_18+0x38>
+	}
+	else
+	{
+		tmp=UDR0; //чтение буфера иначе прерывание будет бесконечным
+ 214:	80 91 c6 00 	lds	r24, 0x00C6
+ 218:	80 93 14 01 	sts	0x0114, r24
+	}
+}
+ 21c:	ff 91       	pop	r31
+ 21e:	ef 91       	pop	r30
+ 220:	9f 91       	pop	r25
+ 222:	8f 91       	pop	r24
+ 224:	0f 90       	pop	r0
+ 226:	0f be       	out	0x3f, r0	; 63
+ 228:	0f 90       	pop	r0
+ 22a:	1f 90       	pop	r1
+ 22c:	18 95       	reti
+
+0000022e <__vector_19>:
+
+//прерывание по опустошению буфера
+ISR(USART_UDRE_vect)
+{	
+ 22e:	1f 92       	push	r1
+ 230:	0f 92       	push	r0
+ 232:	0f b6       	in	r0, 0x3f	; 63
+ 234:	0f 92       	push	r0
+ 236:	11 24       	eor	r1, r1
+ 238:	8f 93       	push	r24
+ 23a:	9f 93       	push	r25
+ 23c:	ef 93       	push	r30
+ 23e:	ff 93       	push	r31
+	//посылка данных
+	if (TX_pointer<18) //8*2byte
+ 240:	90 91 3b 01 	lds	r25, 0x013B
+ 244:	92 31       	cpi	r25, 0x12	; 18
+ 246:	58 f4       	brcc	.+22     	; 0x25e <__vector_19+0x30>
+		{
+			UDR0=TX_buff[TX_pointer]; //отправляем в передатчик
+ 248:	e9 2f       	mov	r30, r25
+ 24a:	f0 e0       	ldi	r31, 0x00	; 0
+ 24c:	e0 54       	subi	r30, 0x40	; 64
+ 24e:	fd 4f       	sbci	r31, 0xFD	; 253
+ 250:	80 81       	ld	r24, Z
+ 252:	80 93 c6 00 	sts	0x00C6, r24
+			TX_pointer++;
+ 256:	9f 5f       	subi	r25, 0xFF	; 255
+ 258:	90 93 3b 01 	sts	0x013B, r25
+ 25c:	07 c0       	rjmp	.+14     	; 0x26c <__vector_19+0x3e>
+		}
+		else //все данные переданы
+		{
+			TX_pointer=0;
+ 25e:	10 92 3b 01 	sts	0x013B, r1
+			//запрещение прерывания по опустош буфера
+			UCSR0B&=0b11011111; //UDRIE0=0;
+ 262:	80 91 c1 00 	lds	r24, 0x00C1
+ 266:	8f 7d       	andi	r24, 0xDF	; 223
+ 268:	80 93 c1 00 	sts	0x00C1, r24
+		}
+		
+}
+ 26c:	ff 91       	pop	r31
+ 26e:	ef 91       	pop	r30
+ 270:	9f 91       	pop	r25
+ 272:	8f 91       	pop	r24
+ 274:	0f 90       	pop	r0
+ 276:	0f be       	out	0x3f, r0	; 63
+ 278:	0f 90       	pop	r0
+ 27a:	1f 90       	pop	r1
+ 27c:	18 95       	reti
+
+0000027e <main>:
+
+int main(void)
+{ 
+ 27e:	cf 93       	push	r28
+ 280:	df 93       	push	r29
+	wdt_reset(); //сброс watchdog таймера,фуз WDTON=0,стоит
+ 282:	a8 95       	wdr
+	wdt_enable(WDTO_2S);//  2секунды если не сбросил вачдог,ресет
+ 284:	2f e0       	ldi	r18, 0x0F	; 15
+ 286:	88 e1       	ldi	r24, 0x18	; 24
+ 288:	90 e0       	ldi	r25, 0x00	; 0
+ 28a:	0f b6       	in	r0, 0x3f	; 63
+ 28c:	f8 94       	cli
+ 28e:	a8 95       	wdr
+ 290:	80 93 60 00 	sts	0x0060, r24
+ 294:	0f be       	out	0x3f, r0	; 63
+ 296:	20 93 60 00 	sts	0x0060, r18
+	//настройка перефирии
+	init();
+ 29a:	1e d1       	rcall	.+572    	; 0x4d8 <init>
+	asm("sei");
+ 29c:	78 94       	sei
+	boot_constanta(); //загрузка калибровочных констант
+ 29e:	11 d2       	rcall	.+1058   	; 0x6c2 <boot_constanta>
+		 
+	startADC(kanal);
+ 2a0:	80 91 09 01 	lds	r24, 0x0109
+ 2a4:	96 d1       	rcall	.+812    	; 0x5d2 <startADC>
+  loop:
+	 wdt_reset(); //сброс watchdog таймера
+ 2a6:	a8 95       	wdr
+	  
+	  //преобразование завершено
+  	if((ADCSRA&0b01000000)==0)
+ 2a8:	80 91 7a 00 	lds	r24, 0x007A
+ 2ac:	86 fd       	sbrc	r24, 6
+ 2ae:	ab c0       	rjmp	.+342    	; 0x406 <__stack+0x107>
+	   {	   
+		    tmp=ADCL;
+ 2b0:	60 91 78 00 	lds	r22, 0x0078
+ 2b4:	60 93 14 01 	sts	0x0114, r22
+			tmp1=ADCH; 		  		  
+ 2b8:	90 91 79 00 	lds	r25, 0x0079
+ 2bc:	90 93 15 01 	sts	0x0115, r25
+		   if(v<64)
+ 2c0:	80 91 04 01 	lds	r24, 0x0104
+ 2c4:	80 34       	cpi	r24, 0x40	; 64
+ 2c6:	40 f4       	brcc	.+16     	; 0x2d8 <main+0x5a>
+		   {			    
+			   //прибавляю к summa значения АЦП
+			   asm_add(tmp1,tmp);
+ 2c8:	89 2f       	mov	r24, r25
+ 2ca:	d0 de       	rcall	.-608    	; 0x6c <asm_add>
+			   v++;
+ 2cc:	80 91 04 01 	lds	r24, 0x0104
+ 2d0:	8f 5f       	subi	r24, 0xFF	; 255
+ 2d2:	80 93 04 01 	sts	0x0104, r24
+ 2d6:	94 c0       	rjmp	.+296    	; 0x400 <__stack+0x101>
+		   }
+		   else
+		   {
+			 // исправляю разрыв, каналы  7 6 5 1 0
+			 //      signals[]            4 3 2 1 0
+		     if (kanal>1)kanal-=3;			 
+ 2d8:	80 91 09 01 	lds	r24, 0x0109
+ 2dc:	82 30       	cpi	r24, 0x02	; 2
+ 2de:	18 f0       	brcs	.+6      	; 0x2e6 <main+0x68>
+ 2e0:	83 50       	subi	r24, 0x03	; 3
+ 2e2:	80 93 09 01 	sts	0x0109, r24
+			 tmp16=asm_div(summa);// делю на 64
+ 2e6:	60 91 05 01 	lds	r22, 0x0105
+ 2ea:	70 91 06 01 	lds	r23, 0x0106
+ 2ee:	80 91 07 01 	lds	r24, 0x0107
+ 2f2:	90 91 08 01 	lds	r25, 0x0108
+ 2f6:	cc de       	rcall	.-616    	; 0x90 <asm_div>
+ 2f8:	90 93 1a 01 	sts	0x011A, r25
+ 2fc:	80 93 19 01 	sts	0x0119, r24
+			 //сохранение значений с учетом калибровки
+			 signals[kanal]=calibr(tmp16,calibr_cells[kanal]);
+ 300:	e0 91 09 01 	lds	r30, 0x0109
+ 304:	ce 2f       	mov	r28, r30
+ 306:	d0 e0       	ldi	r29, 0x00	; 0
+ 308:	fe 01       	movw	r30, r28
+ 30a:	e5 5d       	subi	r30, 0xD5	; 213
+ 30c:	fe 4f       	sbci	r31, 0xFE	; 254
+ 30e:	60 81       	ld	r22, Z
+ 310:	28 d2       	rcall	.+1104   	; 0x762 <calibr>
+ 312:	cc 0f       	add	r28, r28
+ 314:	dd 1f       	adc	r29, r29
+ 316:	c6 5f       	subi	r28, 0xF6	; 246
+ 318:	de 4f       	sbci	r29, 0xFE	; 254
+ 31a:	99 83       	std	Y+1, r25	; 0x01
+ 31c:	88 83       	st	Y, r24
+			 summa=0;
+ 31e:	10 92 05 01 	sts	0x0105, r1
+ 322:	10 92 06 01 	sts	0x0106, r1
+ 326:	10 92 07 01 	sts	0x0107, r1
+ 32a:	10 92 08 01 	sts	0x0108, r1
+			 v=0;
+ 32e:	10 92 04 01 	sts	0x0104, r1
+			 if (kanal<4) {kanal++;}
+ 332:	80 91 09 01 	lds	r24, 0x0109
+ 336:	84 30       	cpi	r24, 0x04	; 4
+ 338:	20 f4       	brcc	.+8      	; 0x342 <__stack+0x43>
+ 33a:	8f 5f       	subi	r24, 0xFF	; 255
+ 33c:	80 93 09 01 	sts	0x0109, r24
+ 340:	58 c0       	rjmp	.+176    	; 0x3f2 <__stack+0xf3>
+				 else //все замеры выполнены
+				 {
+					 kanal=0;
+ 342:	10 92 09 01 	sts	0x0109, r1
+					 //расчеты измерений
+					 system[0]=asm_ui(signals[0],391);// ток нагрузки
+ 346:	80 91 0a 01 	lds	r24, 0x010A
+ 34a:	90 91 0b 01 	lds	r25, 0x010B
+ 34e:	67 e8       	ldi	r22, 0x87	; 135
+ 350:	71 e0       	ldi	r23, 0x01	; 1
+ 352:	ae de       	rcall	.-676    	; 0xb0 <asm_ui>
+ 354:	90 93 1c 01 	sts	0x011C, r25
+ 358:	80 93 1b 01 	sts	0x011B, r24
+					 system[1]=asm_ui(signals[1],391);// ток заряда батарей
+ 35c:	80 91 0c 01 	lds	r24, 0x010C
+ 360:	90 91 0d 01 	lds	r25, 0x010D
+ 364:	67 e8       	ldi	r22, 0x87	; 135
+ 366:	71 e0       	ldi	r23, 0x01	; 1
+ 368:	a3 de       	rcall	.-698    	; 0xb0 <asm_ui>
+ 36a:	90 93 1e 01 	sts	0x011E, r25
+ 36e:	80 93 1d 01 	sts	0x011D, r24
+					 system[2]=asm_ui(signals[2],375);// напряжение общее на батареях
+ 372:	80 91 0e 01 	lds	r24, 0x010E
+ 376:	90 91 0f 01 	lds	r25, 0x010F
+ 37a:	67 e7       	ldi	r22, 0x77	; 119
+ 37c:	71 e0       	ldi	r23, 0x01	; 1
+ 37e:	98 de       	rcall	.-720    	; 0xb0 <asm_ui>
+ 380:	90 93 20 01 	sts	0x0120, r25
+ 384:	80 93 1f 01 	sts	0x011F, r24
+					 system[3]=asm_ui(signals[3],375);// напряжение на батареи 1(нижней)
+ 388:	80 91 10 01 	lds	r24, 0x0110
+ 38c:	90 91 11 01 	lds	r25, 0x0111
+ 390:	67 e7       	ldi	r22, 0x77	; 119
+ 392:	71 e0       	ldi	r23, 0x01	; 1
+ 394:	8d de       	rcall	.-742    	; 0xb0 <asm_ui>
+ 396:	90 93 22 01 	sts	0x0122, r25
+ 39a:	80 93 21 01 	sts	0x0121, r24
+					 system[4]=asm_ui(signals[4],375);// напряжение БП
+ 39e:	80 91 12 01 	lds	r24, 0x0112
+ 3a2:	90 91 13 01 	lds	r25, 0x0113
+ 3a6:	67 e7       	ldi	r22, 0x77	; 119
+ 3a8:	71 e0       	ldi	r23, 0x01	; 1
+ 3aa:	82 de       	rcall	.-764    	; 0xb0 <asm_ui>
+ 3ac:	90 93 24 01 	sts	0x0124, r25
+ 3b0:	80 93 23 01 	sts	0x0123, r24
+					 if (system[2]>system[3])
+ 3b4:	80 91 1f 01 	lds	r24, 0x011F
+ 3b8:	90 91 20 01 	lds	r25, 0x0120
+ 3bc:	20 91 21 01 	lds	r18, 0x0121
+ 3c0:	30 91 22 01 	lds	r19, 0x0122
+ 3c4:	28 17       	cp	r18, r24
+ 3c6:	39 07       	cpc	r19, r25
+ 3c8:	38 f4       	brcc	.+14     	; 0x3d8 <__stack+0xd9>
+					 {system[5]=system[2]-system[3];} //напряжение верхней батареи
+ 3ca:	82 1b       	sub	r24, r18
+ 3cc:	93 0b       	sbc	r25, r19
+ 3ce:	90 93 26 01 	sts	0x0126, r25
+ 3d2:	80 93 25 01 	sts	0x0125, r24
+ 3d6:	04 c0       	rjmp	.+8      	; 0x3e0 <__stack+0xe1>
+			         else {system[5]=0;} 
+ 3d8:	10 92 26 01 	sts	0x0126, r1
+ 3dc:	10 92 25 01 	sts	0x0125, r1
+					//сам упс
+					ups(RTC_m,RTC_s,system,&ups_mode);
+ 3e0:	80 91 3d 01 	lds	r24, 0x013D
+ 3e4:	60 91 3c 01 	lds	r22, 0x013C
+ 3e8:	4b e1       	ldi	r20, 0x1B	; 27
+ 3ea:	51 e0       	ldi	r21, 0x01	; 1
+ 3ec:	2f e3       	ldi	r18, 0x3F	; 63
+ 3ee:	31 e0       	ldi	r19, 0x01	; 1
+ 3f0:	d0 d3       	rcall	.+1952   	; 0xb92 <ups>
+					
+				 }  //напр БП,ток нагрузки, ток заряда, бат общ., бат 1
+			 // исправляю разрыв
+			 if (kanal>1) {kanal+=3;} 
+ 3f2:	80 91 09 01 	lds	r24, 0x0109
+ 3f6:	82 30       	cpi	r24, 0x02	; 2
+ 3f8:	18 f0       	brcs	.+6      	; 0x400 <__stack+0x101>
+ 3fa:	8d 5f       	subi	r24, 0xFD	; 253
+ 3fc:	80 93 09 01 	sts	0x0109, r24
+			 			   
+		   }		
+		  startADC(kanal);      
+ 400:	80 91 09 01 	lds	r24, 0x0109
+ 404:	e6 d0       	rcall	.+460    	; 0x5d2 <startADC>
+       }
+	    	
+	     
+		  
+		//работа с командами усарт
+		switch(RX_buff[0])
+ 406:	80 91 49 01 	lds	r24, 0x0149
+ 40a:	8c 34       	cpi	r24, 0x4C	; 76
+ 40c:	59 f0       	breq	.+22     	; 0x424 <__stack+0x125>
+ 40e:	8d 34       	cpi	r24, 0x4D	; 77
+ 410:	18 f4       	brcc	.+6      	; 0x418 <__stack+0x119>
+ 412:	8b 34       	cpi	r24, 0x4B	; 75
+ 414:	11 f5       	brne	.+68     	; 0x45a <__stack+0x15b>
+ 416:	0d c0       	rjmp	.+26     	; 0x432 <__stack+0x133>
+ 418:	82 35       	cpi	r24, 0x52	; 82
+ 41a:	89 f0       	breq	.+34     	; 0x43e <__stack+0x13f>
+ 41c:	83 36       	cpi	r24, 0x63	; 99
+ 41e:	e9 f4       	brne	.+58     	; 0x45a <__stack+0x15b>
+		  {
+		       case 'c':
+			          send_system();
+ 420:	2f d2       	rcall	.+1118   	; 0x880 <send_system>
+ 422:	14 c0       	rjmp	.+40     	; 0x44c <__stack+0x14d>
+				    UCSR0B|=0b00100000;///UDRIE0=1;
+			       
+			   break;
+			 
+			  case 'L':
+			        send_const();
+ 424:	54 d2       	rcall	.+1192   	; 0x8ce <send_const>
+			        //разрешение прерывания по опустошению буфера
+			        clear_RX();
+ 426:	40 d3       	rcall	.+1664   	; 0xaa8 <clear_RX>
+					UCSR0B|=0b00100000;///UDRIE0=1;
+ 428:	80 91 c1 00 	lds	r24, 0x00C1
+ 42c:	80 62       	ori	r24, 0x20	; 32
+ 42e:	80 93 c1 00 	sts	0x00C1, r24
+		      
+			  case 'K':   if (RX_==12) //если весь пакет принят
+ 432:	80 91 3a 01 	lds	r24, 0x013A
+ 436:	8c 30       	cpi	r24, 0x0C	; 12
+ 438:	89 f4       	brne	.+34     	; 0x45c <__stack+0x15d>
+			               {
+							   write_calibr(); //запись данных в eeprom		   
+ 43a:	95 d2       	rcall	.+1322   	; 0x966 <write_calibr>
+ 43c:	0e c0       	rjmp	.+28     	; 0x45a <__stack+0x15b>
+			               }
+			    break;
+			   //считывание результатов
+			   case 'R':{
+				          //отправляет данный
+						  if(send_pointer<175){send_log();} 
+ 43e:	80 91 47 01 	lds	r24, 0x0147
+ 442:	8f 3a       	cpi	r24, 0xAF	; 175
+ 444:	10 f0       	brcs	.+4      	; 0x44a <__stack+0x14b>
+							  else {send_pointer=0;send_log();}
+ 446:	10 92 47 01 	sts	0x0147, r1
+ 44a:	dd d2       	rcall	.+1466   	; 0xa06 <send_log>
+						  clear_RX(); 
+ 44c:	2d d3       	rcall	.+1626   	; 0xaa8 <clear_RX>
+					      UCSR0B|=0b00100000;///UDRIE0=1;  
+ 44e:	80 91 c1 00 	lds	r24, 0x00C1
+ 452:	80 62       	ori	r24, 0x20	; 32
+ 454:	80 93 c1 00 	sts	0x00C1, r24
+ 458:	01 c0       	rjmp	.+2      	; 0x45c <__stack+0x15d>
+			            }  break;
+						
+			  default: clear_RX(); 	break;
+ 45a:	26 d3       	rcall	.+1612   	; 0xaa8 <clear_RX>
+		  }
+				   
+		//вывод на дисплей
+		
+		if (menu>=128) //преобразование пунктов меню в нормальный вид
+ 45c:	80 91 18 01 	lds	r24, 0x0118
+ 460:	87 fd       	sbrc	r24, 7
+		{tmp=menu&0b01111111; } else {tmp=menu;}
+ 462:	8f 77       	andi	r24, 0x7F	; 127
+ 464:	80 93 14 01 	sts	0x0114, r24
+			
+		if(tmp<5){
+ 468:	80 91 14 01 	lds	r24, 0x0114
+ 46c:	85 30       	cpi	r24, 0x05	; 5
+ 46e:	10 f4       	brcc	.+4      	; 0x474 <__stack+0x175>
+			disp_inf(tmp);
+ 470:	04 d3       	rcall	.+1544   	; 0xa7a <disp_inf>
+ 472:	19 cf       	rjmp	.-462    	; 0x2a6 <main+0x28>
+			
+		} //обычный режим отображения
+		else { //вошли в подменю включения/откл замера
+			
+			   //если tmp=5 отображает на дисплее 0С если tmp=6  1С
+			  znak(tmp);
+ 474:	f3 d2       	rcall	.+1510   	; 0xa5c <znak>
+ 476:	17 cf       	rjmp	.-466    	; 0x2a6 <main+0x28>
+
+00000478 <__vector_16>:
+}
+	
+	
+//Прерывание для динамической индикации 122гц
+ISR(TIMER0_OVF_vect)
+{
+ 478:	1f 92       	push	r1
+ 47a:	0f 92       	push	r0
+ 47c:	0f b6       	in	r0, 0x3f	; 63
+ 47e:	0f 92       	push	r0
+ 480:	11 24       	eor	r1, r1
+ 482:	2f 93       	push	r18
+ 484:	3f 93       	push	r19
+ 486:	4f 93       	push	r20
+ 488:	5f 93       	push	r21
+ 48a:	6f 93       	push	r22
+ 48c:	7f 93       	push	r23
+ 48e:	8f 93       	push	r24
+ 490:	9f 93       	push	r25
+ 492:	af 93       	push	r26
+ 494:	bf 93       	push	r27
+ 496:	ef 93       	push	r30
+ 498:	ff 93       	push	r31
+   //выводит led на дисплей
+   dinamic(razrad);
+ 49a:	80 91 00 01 	lds	r24, 0x0100
+ 49e:	68 d0       	rcall	.+208    	; 0x570 <dinamic>
+   if(razrad!=2)razrad++;
+ 4a0:	80 91 00 01 	lds	r24, 0x0100
+ 4a4:	82 30       	cpi	r24, 0x02	; 2
+ 4a6:	21 f0       	breq	.+8      	; 0x4b0 <__vector_16+0x38>
+ 4a8:	8f 5f       	subi	r24, 0xFF	; 255
+ 4aa:	80 93 00 01 	sts	0x0100, r24
+ 4ae:	02 c0       	rjmp	.+4      	; 0x4b4 <__vector_16+0x3c>
+	   else razrad=0;
+ 4b0:	10 92 00 01 	sts	0x0100, r1
+   button();
+ 4b4:	cf d0       	rcall	.+414    	; 0x654 <button>
+    
+}
+ 4b6:	ff 91       	pop	r31
+ 4b8:	ef 91       	pop	r30
+ 4ba:	bf 91       	pop	r27
+ 4bc:	af 91       	pop	r26
+ 4be:	9f 91       	pop	r25
+ 4c0:	8f 91       	pop	r24
+ 4c2:	7f 91       	pop	r23
+ 4c4:	6f 91       	pop	r22
+ 4c6:	5f 91       	pop	r21
+ 4c8:	4f 91       	pop	r20
+ 4ca:	3f 91       	pop	r19
+ 4cc:	2f 91       	pop	r18
+ 4ce:	0f 90       	pop	r0
+ 4d0:	0f be       	out	0x3f, r0	; 63
+ 4d2:	0f 90       	pop	r0
+ 4d4:	1f 90       	pop	r1
+ 4d6:	18 95       	reti
+
+000004d8 <init>:
+{
+	/*
+	PD2-SHCP,PD3-STCP,PD4 - DS управление регистром 74hc595
+	PD5-AN3,PD6-AN2,PD7-AN1
+	*/
+    DDRD=0b11111100;
+ 4d8:	8c ef       	ldi	r24, 0xFC	; 252
+ 4da:	8a b9       	out	0x0a, r24	; 10
+	DDRB=0b00000110; //PB1 PB2 outputs PWM
+ 4dc:	86 e0       	ldi	r24, 0x06	; 6
+ 4de:	84 b9       	out	0x04, r24	; 4
+	PORTB=0b00000001; //PB0 подтягиваю на + через резистор
+ 4e0:	21 e0       	ldi	r18, 0x01	; 1
+ 4e2:	25 b9       	out	0x05, r18	; 5
+	//управление ИБП
+	DDRC=0b00011100;
+ 4e4:	8c e1       	ldi	r24, 0x1C	; 28
+ 4e6:	87 b9       	out	0x07, r24	; 7
+	
+	//инициализация  TC0 для динамической индикации
+	//8 000 000 /256/256=122/3 =40HZ
+	TCCR0B=0b00000100; //clkI/O/256 (from prescaler)
+ 4e8:	84 e0       	ldi	r24, 0x04	; 4
+ 4ea:	85 bd       	out	0x25, r24	; 37
+	TIMSK0=1; //enable interrupt
+ 4ec:	20 93 6e 00 	sts	0x006E, r18
+	
+   //отключение цифровых входов
+   DIDR0=0b11100011; //ADC 7,6,5,1,0  
+ 4f0:	83 ee       	ldi	r24, 0xE3	; 227
+ 4f2:	80 93 7e 00 	sts	0x007E, r24
+ 
+   //инициализируем 16bit TC1
+   TCCR1A=0b10100010; //Clear OC1A/OC1B on compare match  FAST PWM
+ 4f6:	82 ea       	ldi	r24, 0xA2	; 162
+ 4f8:	80 93 80 00 	sts	0x0080, r24
+   TCCR1B=0b00011001;// clc/1
+ 4fc:	89 e1       	ldi	r24, 0x19	; 25
+ 4fe:	80 93 81 00 	sts	0x0081, r24
+   //TOP -ICR1
+   ICR1=0xffff;
+ 502:	8f ef       	ldi	r24, 0xFF	; 255
+ 504:	9f ef       	ldi	r25, 0xFF	; 255
+ 506:	90 93 87 00 	sts	0x0087, r25
+ 50a:	80 93 86 00 	sts	0x0086, r24
+  // OCR1A=0;
+   //OCR1B=0;
+  
+   //Инициализируем таймер,используемый как часы RTC
+	//включаю делитель на 128
+	TCCR2B=0b00000101;
+ 50e:	85 e0       	ldi	r24, 0x05	; 5
+ 510:	80 93 b1 00 	sts	0x00B1, r24
+	//переключаю таймер в асинхронный режим AS2=1
+	ASSR=0b00100000;
+ 514:	80 e2       	ldi	r24, 0x20	; 32
+ 516:	80 93 b6 00 	sts	0x00B6, r24
+	//жду завершения инициализации таймера
+	//Wait for TCN2UB, OCR2xUB, and TCR2xUB.
+	TCNT2=1;
+ 51a:	20 93 b2 00 	sts	0x00B2, r18
+	while((ASSR&0b00011111)!=0);
+ 51e:	80 91 b6 00 	lds	r24, 0x00B6
+ 522:	90 e0       	ldi	r25, 0x00	; 0
+ 524:	8f 71       	andi	r24, 0x1F	; 31
+ 526:	90 70       	andi	r25, 0x00	; 0
+ 528:	89 2b       	or	r24, r25
+ 52a:	c9 f7       	brne	.-14     	; 0x51e <init+0x46>
+    TIMSK2=0b00000001; //разрешаю прерывание
+ 52c:	81 e0       	ldi	r24, 0x01	; 1
+ 52e:	80 93 70 00 	sts	0x0070, r24
+      //инициализация USART
+      //#define FOSC 8000000 // Clock Speed
+      //#define BAUD 9600   //скорость передачи
+      //#define MYUBRR (FOSC/16*BAUD)-1
+     //Set baud rate 51
+     UBRR0H =0;// (uint8_t)(MYUBRR>>8);
+ 532:	10 92 c5 00 	sts	0x00C5, r1
+     UBRR0L =0x33;// (uint8_t)MYUBRR;
+ 536:	83 e3       	ldi	r24, 0x33	; 51
+ 538:	80 93 c4 00 	sts	0x00C4, r24
+     //Включаем прием,передачу и прерывания
+     UCSR0B=0b10011000;//RXCIE0,TXCIE0=0,RXEN0,TXEN0;
+ 53c:	88 e9       	ldi	r24, 0x98	; 152
+ 53e:	80 93 c1 00 	sts	0x00C1, r24
+     /* Set frame format: 8data, 2stop bit */
+     //асинхронный режим,без четности 1стоп,8бит
+     UCSR0C =0b00000110;
+ 542:	86 e0       	ldi	r24, 0x06	; 6
+ 544:	80 93 c2 00 	sts	0x00C2, r24
+ }
+ 548:	08 95       	ret
+
+0000054a <reg>:
+
+//вывод данных в регистр
+void reg(uint8_t b)
+{
+ 54a:	20 e0       	ldi	r18, 0x00	; 0
+ 54c:	30 e0       	ldi	r19, 0x00	; 0
+	for(int i=0;i<8;i++)
+	{
+		//установка бита на DS // PD2-SHCP,PD3-STCP,PD2-SHCP,PD3-STCP,
+		if ((b&0b10000000)==0b10000000)
+ 54e:	87 ff       	sbrs	r24, 7
+ 550:	02 c0       	rjmp	.+4      	; 0x556 <reg+0xc>
+		{
+			PORTD|=0b00010000;//PD4 - DS
+ 552:	5c 9a       	sbi	0x0b, 4	; 11
+ 554:	01 c0       	rjmp	.+2      	; 0x558 <reg+0xe>
+		}
+		else
+		{
+			PORTD&=0b11101111;//PD4 - DS
+ 556:	5c 98       	cbi	0x0b, 4	; 11
+		}
+		//стробирую PD2-SHCP
+		PORTD|=0b00000100;
+ 558:	5a 9a       	sbi	0x0b, 2	; 11
+		PORTD&=0b11111011;
+ 55a:	5a 98       	cbi	0x0b, 2	; 11
+ }
+
+//вывод данных в регистр
+void reg(uint8_t b)
+{
+	for(int i=0;i<8;i++)
+ 55c:	2f 5f       	subi	r18, 0xFF	; 255
+ 55e:	3f 4f       	sbci	r19, 0xFF	; 255
+ 560:	28 30       	cpi	r18, 0x08	; 8
+ 562:	31 05       	cpc	r19, r1
+ 564:	11 f0       	breq	.+4      	; 0x56a <reg+0x20>
+			PORTD&=0b11101111;//PD4 - DS
+		}
+		//стробирую PD2-SHCP
+		PORTD|=0b00000100;
+		PORTD&=0b11111011;
+		b=b<<1;
+ 566:	88 0f       	add	r24, r24
+ 568:	f2 cf       	rjmp	.-28     	; 0x54e <reg+0x4>
+	}
+	//установка на выводах
+	//PD3-STCP
+	PORTD|=0b00001000;
+ 56a:	5b 9a       	sbi	0x0b, 3	; 11
+	PORTD&=0b11110111;
+ 56c:	5b 98       	cbi	0x0b, 3	; 11
+	
+}
+ 56e:	08 95       	ret
+
+00000570 <dinamic>:
+
+//динамическая индикация PD5-AN3,PD6-AN2,PD7-AN1
+void dinamic(uint8_t pos)
+{
+ 570:	1f 93       	push	r17
+ 572:	18 2f       	mov	r17, r24
+	extern uint8_t led[3];
+	uint8_t point,tmp;
+	 //извлекаем точку 
+	  point=led[0];
+ 574:	20 91 01 01 	lds	r18, 0x0101
+	  point&=0b01100000; 
+	  led[0]=led[0]&0b00011111; //возвращаю как было	
+ 578:	82 2f       	mov	r24, r18
+ 57a:	8f 71       	andi	r24, 0x1F	; 31
+ 57c:	80 93 01 01 	sts	0x0101, r24
+	
+	PORTD&=0b00011111; //потушить все
+ 580:	8b b1       	in	r24, 0x0b	; 11
+ 582:	8f 71       	andi	r24, 0x1F	; 31
+ 584:	8b b9       	out	0x0b, r24	; 11
+	//if (led[pos]<19) //защита от недопустимых символов
+    //{tmp=pgm_read_byte(&zgen[led[pos]]);}// читаю код из знакогенератора
+	//else
+	//{tmp=pgm_read_byte(&zgen[10]);} //потушить
+	tmp=pgm_read_byte(&zgen[led[pos]]);// читаю код из знакогенератора	
+ 586:	81 2f       	mov	r24, r17
+ 588:	90 e0       	ldi	r25, 0x00	; 0
+ 58a:	fc 01       	movw	r30, r24
+ 58c:	ef 5f       	subi	r30, 0xFF	; 255
+ 58e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 590:	e0 81       	ld	r30, Z
+ 592:	f0 e0       	ldi	r31, 0x00	; 0
+ 594:	ec 5c       	subi	r30, 0xCC	; 204
+ 596:	ff 4f       	sbci	r31, 0xFF	; 255
+ 598:	44 91       	lpm	r20, Z+
+    point>>=5;//привращаю в нормальный вид 1 2 3
+	if((pos+1)==point)
+ 59a:	01 96       	adiw	r24, 0x01	; 1
+{
+	extern uint8_t led[3];
+	uint8_t point,tmp;
+	 //извлекаем точку 
+	  point=led[0];
+	  point&=0b01100000; 
+ 59c:	20 76       	andi	r18, 0x60	; 96
+    //{tmp=pgm_read_byte(&zgen[led[pos]]);}// читаю код из знакогенератора
+	//else
+	//{tmp=pgm_read_byte(&zgen[10]);} //потушить
+	tmp=pgm_read_byte(&zgen[led[pos]]);// читаю код из знакогенератора	
+    point>>=5;//привращаю в нормальный вид 1 2 3
+	if((pos+1)==point)
+ 59e:	22 95       	swap	r18
+ 5a0:	26 95       	lsr	r18
+ 5a2:	27 70       	andi	r18, 0x07	; 7
+ 5a4:	30 e0       	ldi	r19, 0x00	; 0
+ 5a6:	82 17       	cp	r24, r18
+ 5a8:	93 07       	cpc	r25, r19
+ 5aa:	11 f0       	breq	.+4      	; 0x5b0 <dinamic+0x40>
+ 5ac:	84 2f       	mov	r24, r20
+ 5ae:	02 c0       	rjmp	.+4      	; 0x5b4 <dinamic+0x44>
+	{tmp&=0b11011111;} //включаю точку
+ 5b0:	84 2f       	mov	r24, r20
+ 5b2:	8f 7d       	andi	r24, 0xDF	; 223
+				
+	reg(tmp); //вывод данных в регистр
+ 5b4:	ca df       	rcall	.-108    	; 0x54a <reg>
+//включаю разряд
+switch(pos)
+ 5b6:	11 30       	cpi	r17, 0x01	; 1
+ 5b8:	39 f0       	breq	.+14     	; 0x5c8 <dinamic+0x58>
+ 5ba:	11 30       	cpi	r17, 0x01	; 1
+ 5bc:	18 f0       	brcs	.+6      	; 0x5c4 <dinamic+0x54>
+ 5be:	12 30       	cpi	r17, 0x02	; 2
+ 5c0:	31 f4       	brne	.+12     	; 0x5ce <dinamic+0x5e>
+ 5c2:	04 c0       	rjmp	.+8      	; 0x5cc <dinamic+0x5c>
+		{
+			
+			case 0:  PORTD|=0b10000000; break;	//1
+ 5c4:	5f 9a       	sbi	0x0b, 7	; 11
+ 5c6:	03 c0       	rjmp	.+6      	; 0x5ce <dinamic+0x5e>
+			case 1:  PORTD|=0b01000000; break;	//2
+ 5c8:	5e 9a       	sbi	0x0b, 6	; 11
+ 5ca:	01 c0       	rjmp	.+2      	; 0x5ce <dinamic+0x5e>
+			case 2:  PORTD|=0b00100000; break;	//3
+ 5cc:	5d 9a       	sbi	0x0b, 5	; 11
+						
+		}
+	
+  }
+ 5ce:	1f 91       	pop	r17
+ 5d0:	08 95       	ret
+
+000005d2 <startADC>:
+
+
+//запуск преобразования ацп
+void startADC(uint8_t channel)
+{
+    ADMUX=0;	
+ 5d2:	ec e7       	ldi	r30, 0x7C	; 124
+ 5d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 5d6:	10 82       	st	Z, r1
+	//VCC ref voltage ADLAR=0
+	ADMUX=0b01000000+channel;
+ 5d8:	80 5c       	subi	r24, 0xC0	; 192
+ 5da:	80 83       	st	Z, r24
+	ADCSRA=0b11000110;  //64 125кгц тактовая частота
+ 5dc:	86 ec       	ldi	r24, 0xC6	; 198
+ 5de:	80 93 7a 00 	sts	0x007A, r24
+	
+}
+ 5e2:	08 95       	ret
+
+000005e4 <hexdec>:
+
+//преобразование двоичного числ в дес 
+void hexdec(uint16_t hex,uint8_t point)
+{
+ 5e4:	9c 01       	movw	r18, r24
+ 5e6:	46 2f       	mov	r20, r22
+ 5e8:	68 ee       	ldi	r22, 0xE8	; 232
+ 5ea:	73 e0       	ldi	r23, 0x03	; 3
+ 5ec:	c8 d3       	rcall	.+1936   	; 0xd7e <__udivmodhi4>
+ 5ee:	fc 01       	movw	r30, r24
+	    	dec[2]++;
+		   	hex-=10;
+     	   	}	
+	   
+	   
+		led[0]=dec[0]+point; //передача точки
+ 5f0:	c9 01       	movw	r24, r18
+ 5f2:	68 ee       	ldi	r22, 0xE8	; 232
+ 5f4:	73 e0       	ldi	r23, 0x03	; 3
+ 5f6:	c3 d3       	rcall	.+1926   	; 0xd7e <__udivmodhi4>
+ 5f8:	46 0f       	add	r20, r22
+ 5fa:	40 93 01 01 	sts	0x0101, r20
+		led[1]=dec[1];
+ 5fe:	cf 01       	movw	r24, r30
+ 600:	64 e6       	ldi	r22, 0x64	; 100
+ 602:	70 e0       	ldi	r23, 0x00	; 0
+ 604:	bc d3       	rcall	.+1912   	; 0xd7e <__udivmodhi4>
+ 606:	60 93 02 01 	sts	0x0102, r22
+		led[2]=dec[2];
+ 60a:	cf 01       	movw	r24, r30
+ 60c:	64 e6       	ldi	r22, 0x64	; 100
+ 60e:	70 e0       	ldi	r23, 0x00	; 0
+ 610:	b6 d3       	rcall	.+1900   	; 0xd7e <__udivmodhi4>
+ 612:	6a e0       	ldi	r22, 0x0A	; 10
+ 614:	70 e0       	ldi	r23, 0x00	; 0
+ 616:	b3 d3       	rcall	.+1894   	; 0xd7e <__udivmodhi4>
+ 618:	60 93 03 01 	sts	0x0103, r22
+	}
+ 61c:	08 95       	ret
+
+0000061e <ee_read>:
+	
+	//Функция чтения из EEPROM
+	// задаем адресс ячейки в условном фотмате, получаем значение в этой ячейке.
+	uint8_t ee_read (uint8_t addr)
+	{
+		asm volatile("cli");
+ 61e:	f8 94       	cli
+		/* Wait for completion of previous write */
+		while(EECR & (1<<EEPE));
+ 620:	f9 99       	sbic	0x1f, 1	; 31
+ 622:	fe cf       	rjmp	.-4      	; 0x620 <ee_read+0x2>
+		/* Set up address register */
+		EEARL = addr;
+ 624:	81 bd       	out	0x21, r24	; 33
+		/* Start eeprom read by writing EERE */
+		EECR |= (1<<EERE);
+ 626:	f8 9a       	sbi	0x1f, 0	; 31
+		/* Return data from data register */
+		asm volatile("sei");
+ 628:	78 94       	sei
+		return EEDR;
+ 62a:	80 b5       	in	r24, 0x20	; 32
+	};
+ 62c:	08 95       	ret
+
+0000062e <ee_write>:
+
+
+	//Функция записи в ячейку с проверкой содержимого в ячейке на предмет равенства того что записано туда уже.
+	void ee_write (uint8_t addr,uint8_t data)
+	{
+ 62e:	0f 93       	push	r16
+ 630:	1f 93       	push	r17
+ 632:	18 2f       	mov	r17, r24
+ 634:	06 2f       	mov	r16, r22
+		asm volatile("cli");
+ 636:	f8 94       	cli
+		unsigned char old_data=0;
+		/* Wait for completion of previous write */
+		while(EECR & (1<<EEPE));
+ 638:	f9 99       	sbic	0x1f, 1	; 31
+ 63a:	fe cf       	rjmp	.-4      	; 0x638 <ee_write+0xa>
+		/* Set up address  */
+		old_data=ee_read(addr);
+ 63c:	81 2f       	mov	r24, r17
+ 63e:	ef df       	rcall	.-34     	; 0x61e <ee_read>
+
+
+		if (old_data != data)
+ 640:	80 17       	cp	r24, r16
+ 642:	29 f0       	breq	.+10     	; 0x64e <ee_write+0x20>
+		{
+			EEARL = addr;
+ 644:	11 bd       	out	0x21, r17	; 33
+			EEDR = data;
+ 646:	00 bd       	out	0x20, r16	; 32
+			/* Write logical one to EEMPE */
+			//EECR |= (1<<EEMPE);
+			asm volatile ("sbi 0x1F,2  ");  // Иначе оно не успевает за 4 такта выполнить команду!!!!!! без включенной оптимизации
+ 648:	fa 9a       	sbi	0x1f, 2	; 31
+			/* Start eeprom write by setting EEPE */
+			//EECR |= (1<<EEPE);
+			asm volatile ("sbi 0x1F,1");
+ 64a:	f9 9a       	sbi	0x1f, 1	; 31
+			asm volatile("sei");
+ 64c:	78 94       	sei
+
+		}
+	}
+ 64e:	1f 91       	pop	r17
+ 650:	0f 91       	pop	r16
+ 652:	08 95       	ret
+
+00000654 <button>:
+{
+	extern uint8_t b_timer,b_timer2,menu;
+	extern uint8_t RTC_s;
+	
+		 //опрос кнопки
+	 if((PINB&0b00000001)==0) //кнопка нажата
+ 654:	18 99       	sbic	0x03, 0	; 3
+ 656:	2b c0       	rjmp	.+86     	; 0x6ae <button+0x5a>
+	 {
+		 //кнопка удерживается 122/24=5hz. 1/5=0.2c
+		 if(b_timer==24)
+ 658:	80 91 16 01 	lds	r24, 0x0116
+ 65c:	88 31       	cpi	r24, 0x18	; 24
+ 65e:	19 f5       	brne	.+70     	; 0x6a6 <button+0x52>
+		 {
+			 //кнопка была нажата
+			 
+			 //Обычный режим:  меняем меню,если кнопку отпускали
+			 if((menu&128)==0)
+ 660:	80 91 18 01 	lds	r24, 0x0118
+ 664:	87 fd       	sbrc	r24, 7
+ 666:	11 c0       	rjmp	.+34     	; 0x68a <button+0x36>
+			 { 				  	   
+				     //переключение меню по кругу
+				     if (menu<4) //5 пунктов меню
+ 668:	84 30       	cpi	r24, 0x04	; 4
+ 66a:	10 f4       	brcc	.+4      	; 0x670 <button+0x1c>
+				     {menu+=128+1;}
+ 66c:	8f 57       	subi	r24, 0x7F	; 127
+ 66e:	0b c0       	rjmp	.+22     	; 0x686 <button+0x32>
+				     else 
+				     {
+				        if (menu<5){menu=128;} //cброс пункта меню 
+ 670:	84 30       	cpi	r24, 0x04	; 4
+ 672:	11 f4       	brne	.+4      	; 0x678 <button+0x24>
+ 674:	80 e8       	ldi	r24, 0x80	; 128
+ 676:	07 c0       	rjmp	.+14     	; 0x686 <button+0x32>
+					     else //переключение подменю(получено при длинном нажатии)
+					    {
+							RTC_s=0; //сброс счетчика секунд
+ 678:	10 92 3c 01 	sts	0x013C, r1
+						   //переключение подменю(5,6) по кругу
+						   if (menu<6) {menu+=128+1;}
+ 67c:	85 30       	cpi	r24, 0x05	; 5
+ 67e:	11 f4       	brne	.+4      	; 0x684 <button+0x30>
+ 680:	86 e8       	ldi	r24, 0x86	; 134
+ 682:	01 c0       	rjmp	.+2      	; 0x686 <button+0x32>
+							else {menu=5+128;}
+ 684:	85 e8       	ldi	r24, 0x85	; 133
+ 686:	80 93 18 01 	sts	0x0118, r24
+				     }
+				 
+			 } //++меню и добавляем флаг(128) что меню сменили
+				 
+			    //проверка длинного(2.12c) нажатия на кнопку
+			     if(b_timer2==255)
+ 68a:	80 91 17 01 	lds	r24, 0x0117
+ 68e:	8f 3f       	cpi	r24, 0xFF	; 255
+ 690:	31 f4       	brne	.+12     	; 0x69e <button+0x4a>
+			      {
+				     //было длинное нажатие
+					   menu=5; //зашел в подменю
+					  //menu&=0b01111111; 
+					    b_timer=0; b_timer2=0; menu+=128;
+ 692:	10 92 16 01 	sts	0x0116, r1
+ 696:	10 92 17 01 	sts	0x0117, r1
+ 69a:	85 e8       	ldi	r24, 0x85	; 133
+ 69c:	0f c0       	rjmp	.+30     	; 0x6bc <button+0x68>
+			      }
+			     else
+			      { b_timer2++; }
+ 69e:	8f 5f       	subi	r24, 0xFF	; 255
+ 6a0:	80 93 17 01 	sts	0x0117, r24
+ 6a4:	08 95       	ret
+		   
+		 }
+		 else
+		 { b_timer++;}
+ 6a6:	8f 5f       	subi	r24, 0xFF	; 255
+ 6a8:	80 93 16 01 	sts	0x0116, r24
+ 6ac:	08 95       	ret
+	 }
+	 else {b_timer=0;b_timer2=0; menu&=0b01111111; } //кнопку отпустили
+ 6ae:	10 92 16 01 	sts	0x0116, r1
+ 6b2:	10 92 17 01 	sts	0x0117, r1
+ 6b6:	80 91 18 01 	lds	r24, 0x0118
+ 6ba:	8f 77       	andi	r24, 0x7F	; 127
+ 6bc:	80 93 18 01 	sts	0x0118, r24
+ 6c0:	08 95       	ret
+
+000006c2 <boot_constanta>:
+}	
+
+
+//считывает из памяти системные константы(калибровка, другие значения)
+void boot_constanta()//uint8_t *sys_const,uint16_t *u_param)
+{	
+ 6c2:	0f 93       	push	r16
+ 6c4:	1f 93       	push	r17
+ 6c6:	cf 93       	push	r28
+ 6c8:	df 93       	push	r29
+ 6ca:	cb e2       	ldi	r28, 0x2B	; 43
+ 6cc:	d1 e0       	ldi	r29, 0x01	; 1
+ 6ce:	10 e0       	ldi	r17, 0x00	; 0
+	extern uint8_t calibr_cells[];
+	extern uint16_t u_param[];
+	//читаю из EEPROM калибровочные константы
+	for (uint8_t i=0;i<5;i++)   //константы для калибровки каналов
+	{   		
+		calibr_cells[i]=ee_read(i);
+ 6d0:	81 2f       	mov	r24, r17
+ 6d2:	a5 df       	rcall	.-182    	; 0x61e <ee_read>
+ 6d4:	88 83       	st	Y, r24
+		//если память чистая
+	    if (calibr_cells[i]==0xFF) {calibr_cells[i]=0;}
+ 6d6:	8f 3f       	cpi	r24, 0xFF	; 255
+ 6d8:	09 f4       	brne	.+2      	; 0x6dc <boot_constanta+0x1a>
+ 6da:	18 82       	st	Y, r1
+void boot_constanta()//uint8_t *sys_const,uint16_t *u_param)
+{	
+	extern uint8_t calibr_cells[];
+	extern uint16_t u_param[];
+	//читаю из EEPROM калибровочные константы
+	for (uint8_t i=0;i<5;i++)   //константы для калибровки каналов
+ 6dc:	1f 5f       	subi	r17, 0xFF	; 255
+ 6de:	21 96       	adiw	r28, 0x01	; 1
+ 6e0:	15 30       	cpi	r17, 0x05	; 5
+ 6e2:	b1 f7       	brne	.-20     	; 0x6d0 <boot_constanta+0xe>
+ 6e4:	05 e0       	ldi	r16, 0x05	; 5
+ 6e6:	c0 e0       	ldi	r28, 0x00	; 0
+ 6e8:	d0 e0       	ldi	r29, 0x00	; 0
+     uint8_t tmpH,tmpL,k=0;
+	//читаю из еепром значения напряжений 5H6L,7H8L,9H10L
+	//пороги балансиров и откл нагр
+	for(uint8_t i=5;i<11;i+=2)
+	{
+		tmpH=ee_read(i);
+ 6ea:	80 2f       	mov	r24, r16
+ 6ec:	98 df       	rcall	.-208    	; 0x61e <ee_read>
+ 6ee:	18 2f       	mov	r17, r24
+		tmpL=ee_read(i+1);
+ 6f0:	80 2f       	mov	r24, r16
+ 6f2:	8f 5f       	subi	r24, 0xFF	; 255
+ 6f4:	94 df       	rcall	.-216    	; 0x61e <ee_read>
+		//собираем int16_t из двух int8_t. "С" очень криво делает эту операцию
+		asm volatile(   "clr %A[RES]"	"\n\t"
+ 6f6:	28 2f       	mov	r18, r24
+ 6f8:	88 27       	eor	r24, r24
+ 6fa:	99 27       	eor	r25, r25
+ 6fc:	82 2f       	mov	r24, r18
+ 6fe:	91 2f       	mov	r25, r17
+ 700:	fe 01       	movw	r30, r28
+ 702:	ee 0f       	add	r30, r30
+ 704:	ff 1f       	adc	r31, r31
+ 706:	e0 5d       	subi	r30, 0xD0	; 208
+ 708:	fe 4f       	sbci	r31, 0xFE	; 254
+ 70a:	91 83       	std	Z+1, r25	; 0x01
+ 70c:	80 83       	st	Z, r24
+	    if (calibr_cells[i]==0xFF) {calibr_cells[i]=0;}
+	}
+     uint8_t tmpH,tmpL,k=0;
+	//читаю из еепром значения напряжений 5H6L,7H8L,9H10L
+	//пороги балансиров и откл нагр
+	for(uint8_t i=5;i<11;i+=2)
+ 70e:	0e 5f       	subi	r16, 0xFE	; 254
+ 710:	21 96       	adiw	r28, 0x01	; 1
+ 712:	0b 30       	cpi	r16, 0x0B	; 11
+ 714:	51 f7       	brne	.-44     	; 0x6ea <boot_constanta+0x28>
+ 716:	e0 e3       	ldi	r30, 0x30	; 48
+ 718:	f1 e0       	ldi	r31, 0x01	; 1
+ 71a:	20 e0       	ldi	r18, 0x00	; 0
+		if (u_param[i]>3000)
+		{
+			switch(i)
+			{
+				case 0: u_param[i]=1400; break; //напряжение вкл балансиров
+				case 1: u_param[i]=1300; break; //напряжение откл бал
+ 71c:	a4 e1       	ldi	r26, 0x14	; 20
+ 71e:	b5 e0       	ldi	r27, 0x05	; 5
+	{
+		if (u_param[i]>3000)
+		{
+			switch(i)
+			{
+				case 0: u_param[i]=1400; break; //напряжение вкл балансиров
+ 720:	68 e7       	ldi	r22, 0x78	; 120
+ 722:	75 e0       	ldi	r23, 0x05	; 5
+				case 1: u_param[i]=1300; break; //напряжение откл бал
+				case 2: u_param[i]=1080; break; //напряж откл от нагрузки
+ 724:	48 e3       	ldi	r20, 0x38	; 56
+ 726:	54 e0       	ldi	r21, 0x04	; 4
+        k++;	
+	}
+	//на случай чистых ячеек
+	for (uint8_t i=0;i<3;i++)
+	{
+		if (u_param[i]>3000)
+ 728:	80 81       	ld	r24, Z
+ 72a:	91 81       	ldd	r25, Z+1	; 0x01
+ 72c:	89 5b       	subi	r24, 0xB9	; 185
+ 72e:	9b 40       	sbci	r25, 0x0B	; 11
+ 730:	78 f0       	brcs	.+30     	; 0x750 <boot_constanta+0x8e>
+		{
+			switch(i)
+ 732:	21 30       	cpi	r18, 0x01	; 1
+ 734:	41 f0       	breq	.+16     	; 0x746 <boot_constanta+0x84>
+ 736:	21 30       	cpi	r18, 0x01	; 1
+ 738:	18 f0       	brcs	.+6      	; 0x740 <boot_constanta+0x7e>
+ 73a:	22 30       	cpi	r18, 0x02	; 2
+ 73c:	49 f4       	brne	.+18     	; 0x750 <boot_constanta+0x8e>
+ 73e:	06 c0       	rjmp	.+12     	; 0x74c <boot_constanta+0x8a>
+			{
+				case 0: u_param[i]=1400; break; //напряжение вкл балансиров
+ 740:	71 83       	std	Z+1, r23	; 0x01
+ 742:	60 83       	st	Z, r22
+ 744:	05 c0       	rjmp	.+10     	; 0x750 <boot_constanta+0x8e>
+				case 1: u_param[i]=1300; break; //напряжение откл бал
+ 746:	b1 83       	std	Z+1, r27	; 0x01
+ 748:	a0 83       	st	Z, r26
+ 74a:	02 c0       	rjmp	.+4      	; 0x750 <boot_constanta+0x8e>
+				case 2: u_param[i]=1080; break; //напряж откл от нагрузки
+ 74c:	51 83       	std	Z+1, r21	; 0x01
+ 74e:	40 83       	st	Z, r20
+		               :[RES]"=&d"(u_param[k]):[Hi]"r"(tmpH),[Low]"r"(tmpL)  
+		);
+        k++;	
+	}
+	//на случай чистых ячеек
+	for (uint8_t i=0;i<3;i++)
+ 750:	2f 5f       	subi	r18, 0xFF	; 255
+ 752:	32 96       	adiw	r30, 0x02	; 2
+ 754:	23 30       	cpi	r18, 0x03	; 3
+ 756:	41 f7       	brne	.-48     	; 0x728 <boot_constanta+0x66>
+				default: break;
+			}
+		}
+	}
+ 		
+}
+ 758:	df 91       	pop	r29
+ 75a:	cf 91       	pop	r28
+ 75c:	1f 91       	pop	r17
+ 75e:	0f 91       	pop	r16
+ 760:	08 95       	ret
+
+00000762 <calibr>:
+
+
+
+//прибавляет или отымает значение, используется для калибровки
+uint16_t calibr(uint16_t adc,uint8_t val)
+{
+ 762:	9c 01       	movw	r18, r24
+	if (val <=127) //прибавляю
+ 764:	67 fd       	sbrc	r22, 7
+ 766:	03 c0       	rjmp	.+6      	; 0x76e <calibr+0xc>
+	{
+		adc+=val;		
+ 768:	26 0f       	add	r18, r22
+ 76a:	31 1d       	adc	r19, r1
+ 76c:	07 c0       	rjmp	.+14     	; 0x77c <calibr+0x1a>
+	}
+	else //отнимаю
+	{
+	   val-=127; //-10
+	   if (adc>val){adc-=val;} 	
+ 76e:	6f 57       	subi	r22, 0x7F	; 127
+ 770:	70 e0       	ldi	r23, 0x00	; 0
+ 772:	68 17       	cp	r22, r24
+ 774:	79 07       	cpc	r23, r25
+ 776:	10 f4       	brcc	.+4      	; 0x77c <calibr+0x1a>
+ 778:	26 1b       	sub	r18, r22
+ 77a:	37 0b       	sbc	r19, r23
+	}
+   return adc;	
+}
+ 77c:	c9 01       	movw	r24, r18
+ 77e:	08 95       	ret
+
+00000780 <balansir>:
+	uint16_t raznost;
+	
+	//system[5] напряжение на верхней батареи
+	//system[3] напряжение на нижней батареи
+	//напряжение на нижней батареи больше чем на верхней
+	if (system[3]>system[5])
+ 780:	40 91 21 01 	lds	r20, 0x0121
+ 784:	50 91 22 01 	lds	r21, 0x0122
+ 788:	20 91 25 01 	lds	r18, 0x0125
+ 78c:	30 91 26 01 	lds	r19, 0x0126
+ 790:	24 17       	cp	r18, r20
+ 792:	35 07       	cpc	r19, r21
+ 794:	b8 f4       	brcc	.+46     	; 0x7c4 <balansir+0x44>
+	{
+		raznost=system[3]-system[5]; //вычисляю ошибку
+ 796:	ba 01       	movw	r22, r20
+ 798:	62 1b       	sub	r22, r18
+ 79a:	73 0b       	sbc	r23, r19
+		
+		//если ошибка больше порога  
+		if((raznost>15)&(BT2<0xffff))
+ 79c:	80 91 38 01 	lds	r24, 0x0138
+ 7a0:	90 91 39 01 	lds	r25, 0x0139
+ 7a4:	60 31       	cpi	r22, 0x10	; 16
+ 7a6:	71 05       	cpc	r23, r1
+ 7a8:	50 f0       	brcs	.+20     	; 0x7be <balansir+0x3e>
+ 7aa:	ef ef       	ldi	r30, 0xFF	; 255
+ 7ac:	8f 3f       	cpi	r24, 0xFF	; 255
+ 7ae:	9e 07       	cpc	r25, r30
+ 7b0:	31 f0       	breq	.+12     	; 0x7be <balansir+0x3e>
+		{
+		  BT2++;	
+ 7b2:	01 96       	adiw	r24, 0x01	; 1
+ 7b4:	90 93 39 01 	sts	0x0139, r25
+ 7b8:	80 93 38 01 	sts	0x0138, r24
+ 7bc:	07 c0       	rjmp	.+14     	; 0x7cc <balansir+0x4c>
+		}
+         //ошибка ниже порога 
+		if (raznost<5)
+ 7be:	65 30       	cpi	r22, 0x05	; 5
+ 7c0:	71 05       	cpc	r23, r1
+ 7c2:	20 f4       	brcc	.+8      	; 0x7cc <balansir+0x4c>
+		}
+		  		  	
+	}
+	else
+	{
+		BT2=0;
+ 7c4:	10 92 39 01 	sts	0x0139, r1
+ 7c8:	10 92 38 01 	sts	0x0138, r1
+	}
+  //------------------------		
+		
+	//напряжение на верхней батареи больше чем на нижней
+	if (system[5]>system[3])
+ 7cc:	42 17       	cp	r20, r18
+ 7ce:	53 07       	cpc	r21, r19
+ 7d0:	b0 f4       	brcc	.+44     	; 0x7fe <balansir+0x7e>
+	{
+		raznost=system[5]-system[3];
+ 7d2:	24 1b       	sub	r18, r20
+ 7d4:	35 0b       	sbc	r19, r21
+		
+	    //если ошибка больше порога  
+		if((raznost>15)&(BT1<0xffff))
+ 7d6:	80 91 36 01 	lds	r24, 0x0136
+ 7da:	90 91 37 01 	lds	r25, 0x0137
+ 7de:	20 31       	cpi	r18, 0x10	; 16
+ 7e0:	31 05       	cpc	r19, r1
+ 7e2:	50 f0       	brcs	.+20     	; 0x7f8 <balansir+0x78>
+ 7e4:	4f ef       	ldi	r20, 0xFF	; 255
+ 7e6:	8f 3f       	cpi	r24, 0xFF	; 255
+ 7e8:	94 07       	cpc	r25, r20
+ 7ea:	31 f0       	breq	.+12     	; 0x7f8 <balansir+0x78>
+		{
+			BT1++;
+ 7ec:	01 96       	adiw	r24, 0x01	; 1
+ 7ee:	90 93 37 01 	sts	0x0137, r25
+ 7f2:	80 93 36 01 	sts	0x0136, r24
+ 7f6:	07 c0       	rjmp	.+14     	; 0x806 <balansir+0x86>
+		}
+		
+		if (raznost<5)
+ 7f8:	25 30       	cpi	r18, 0x05	; 5
+ 7fa:	31 05       	cpc	r19, r1
+ 7fc:	20 f4       	brcc	.+8      	; 0x806 <balansir+0x86>
+			BT1=0;
+		}		
+	}
+	else
+	{
+		BT1=0;
+ 7fe:	10 92 37 01 	sts	0x0137, r1
+ 802:	10 92 36 01 	sts	0x0136, r1
+	}
+
+	
+	OCR1A=BT1;
+ 806:	80 91 36 01 	lds	r24, 0x0136
+ 80a:	90 91 37 01 	lds	r25, 0x0137
+ 80e:	90 93 89 00 	sts	0x0089, r25
+ 812:	80 93 88 00 	sts	0x0088, r24
+	system[6]=BT1; //верхняя батарея
+ 816:	90 93 28 01 	sts	0x0128, r25
+ 81a:	80 93 27 01 	sts	0x0127, r24
+	OCR1B=BT2;
+ 81e:	80 91 38 01 	lds	r24, 0x0138
+ 822:	90 91 39 01 	lds	r25, 0x0139
+ 826:	90 93 8b 00 	sts	0x008B, r25
+ 82a:	80 93 8a 00 	sts	0x008A, r24
+	system[7]=BT2; //нижняя батарея
+ 82e:	90 93 2a 01 	sts	0x012A, r25
+ 832:	80 93 29 01 	sts	0x0129, r24
+	
+}
+ 836:	08 95       	ret
+
+00000838 <crc16>:
+//аргументы: указатель на буфер,
+//           размер буфера,
+//
+//возвращает:подсчитанное значение СRC16, ложит его в  буфер УАРТ
+void crc16(uint8_t *buf,uint8_t sizeBuf)
+{
+ 838:	fc 01       	movw	r30, r24
+ 83a:	50 e0       	ldi	r21, 0x00	; 0
+ 83c:	2f ef       	ldi	r18, 0xFF	; 255
+ 83e:	3f ef       	ldi	r19, 0xFF	; 255
+	uint8_t i, j;
+	uint16_t crc=0xffff;
+	for(i=0;i<sizeBuf;i++)
+	{ crc=crc^buf[i];
+		for (j=0;j<8;j++)
+		{ if ((crc&0x0001)!=0x0000) crc=(crc>>1)^0xA001;
+ 840:	a1 e0       	ldi	r26, 0x01	; 1
+ 842:	b0 ea       	ldi	r27, 0xA0	; 160
+ 844:	14 c0       	rjmp	.+40     	; 0x86e <crc16+0x36>
+{
+	extern uint8_t TX_buff[];
+	uint8_t i, j;
+	uint16_t crc=0xffff;
+	for(i=0;i<sizeBuf;i++)
+	{ crc=crc^buf[i];
+ 846:	80 81       	ld	r24, Z
+ 848:	90 e0       	ldi	r25, 0x00	; 0
+ 84a:	28 27       	eor	r18, r24
+ 84c:	39 27       	eor	r19, r25
+ 84e:	40 e0       	ldi	r20, 0x00	; 0
+ 850:	c9 01       	movw	r24, r18
+ 852:	96 95       	lsr	r25
+ 854:	87 95       	ror	r24
+		for (j=0;j<8;j++)
+		{ if ((crc&0x0001)!=0x0000) crc=(crc>>1)^0xA001;
+ 856:	20 ff       	sbrs	r18, 0
+ 858:	04 c0       	rjmp	.+8      	; 0x862 <crc16+0x2a>
+ 85a:	9c 01       	movw	r18, r24
+ 85c:	2a 27       	eor	r18, r26
+ 85e:	3b 27       	eor	r19, r27
+ 860:	01 c0       	rjmp	.+2      	; 0x864 <crc16+0x2c>
+			else crc>>=1;
+ 862:	9c 01       	movw	r18, r24
+	extern uint8_t TX_buff[];
+	uint8_t i, j;
+	uint16_t crc=0xffff;
+	for(i=0;i<sizeBuf;i++)
+	{ crc=crc^buf[i];
+		for (j=0;j<8;j++)
+ 864:	4f 5f       	subi	r20, 0xFF	; 255
+ 866:	48 30       	cpi	r20, 0x08	; 8
+ 868:	99 f7       	brne	.-26     	; 0x850 <crc16+0x18>
+void crc16(uint8_t *buf,uint8_t sizeBuf)
+{
+	extern uint8_t TX_buff[];
+	uint8_t i, j;
+	uint16_t crc=0xffff;
+	for(i=0;i<sizeBuf;i++)
+ 86a:	5f 5f       	subi	r21, 0xFF	; 255
+ 86c:	31 96       	adiw	r30, 0x01	; 1
+ 86e:	56 17       	cp	r21, r22
+ 870:	50 f3       	brcs	.-44     	; 0x846 <crc16+0xe>
+		}
+	}
+	
+	//добавляю контрольную сумму в пакет
+	//младший байт числа uint16_t
+	asm volatile (
+ 872:	82 2f       	mov	r24, r18
+ 874:	80 93 d0 02 	sts	0x02D0, r24
+	"mov %[RES],%A[D16]"	"\n\t"
+	:[RES]"=&d"(TX_buff[16]):[D16]"r"(crc)
+	);
+	
+	//старший
+	asm volatile (
+ 878:	83 2f       	mov	r24, r19
+ 87a:	80 93 d1 02 	sts	0x02D1, r24
+	"mov %[RES],%B[D16]"	"\n\t"
+	:[RES]"=&d"(TX_buff[17]):[D16]"r"(crc)
+	);
+	
+	
+}
+ 87e:	08 95       	ret
+
+00000880 <send_system>:
+
+
+//используется для посылки системных данных(6 измерений)
+void send_system()
+{		
+ 880:	20 e0       	ldi	r18, 0x00	; 0
+ 882:	30 e0       	ldi	r19, 0x00	; 0
+	uint8_t k;
+	for(uint8_t i=0;i<16;i++) //количество бит для пересылки
+	{
+		k=i/2;
+ 884:	82 2f       	mov	r24, r18
+ 886:	86 95       	lsr	r24
+ 888:	e8 2f       	mov	r30, r24
+ 88a:	f0 e0       	ldi	r31, 0x00	; 0
+ 88c:	d9 01       	movw	r26, r18
+ 88e:	a0 54       	subi	r26, 0x40	; 64
+ 890:	bd 4f       	sbci	r27, 0xFD	; 253
+		//TX_tmp2=TX_pointer/2;
+		//младший байт числа
+		if((i%2)==0)
+ 892:	20 fd       	sbrc	r18, 0
+ 894:	09 c0       	rjmp	.+18     	; 0x8a8 <send_system+0x28>
+		{
+			asm volatile (
+ 896:	ee 0f       	add	r30, r30
+ 898:	ff 1f       	adc	r31, r31
+ 89a:	e5 5e       	subi	r30, 0xE5	; 229
+ 89c:	fe 4f       	sbci	r31, 0xFE	; 254
+ 89e:	80 81       	ld	r24, Z
+ 8a0:	91 81       	ldd	r25, Z+1	; 0x01
+ 8a2:	ac 01       	movw	r20, r24
+ 8a4:	84 2f       	mov	r24, r20
+ 8a6:	08 c0       	rjmp	.+16     	; 0x8b8 <send_system+0x38>
+			:[RES]"=&d"(TX_buff[i]):[D16]"r"(system[k])
+			);
+		}
+		else //старший
+		{
+			asm volatile (
+ 8a8:	ee 0f       	add	r30, r30
+ 8aa:	ff 1f       	adc	r31, r31
+ 8ac:	e5 5e       	subi	r30, 0xE5	; 229
+ 8ae:	fe 4f       	sbci	r31, 0xFE	; 254
+ 8b0:	80 81       	ld	r24, Z
+ 8b2:	91 81       	ldd	r25, Z+1	; 0x01
+ 8b4:	ac 01       	movw	r20, r24
+ 8b6:	85 2f       	mov	r24, r21
+ 8b8:	8c 93       	st	X, r24
+ 8ba:	2f 5f       	subi	r18, 0xFF	; 255
+ 8bc:	3f 4f       	sbci	r19, 0xFF	; 255
+
+//используется для посылки системных данных(6 измерений)
+void send_system()
+{		
+	uint8_t k;
+	for(uint8_t i=0;i<16;i++) //количество бит для пересылки
+ 8be:	20 31       	cpi	r18, 0x10	; 16
+ 8c0:	31 05       	cpc	r19, r1
+ 8c2:	01 f7       	brne	.-64     	; 0x884 <send_system+0x4>
+		}
+			
+	}
+	
+	//расчет контрольной суммы
+	crc16(TX_buff,16);	
+ 8c4:	80 ec       	ldi	r24, 0xC0	; 192
+ 8c6:	92 e0       	ldi	r25, 0x02	; 2
+ 8c8:	60 e1       	ldi	r22, 0x10	; 16
+ 8ca:	b6 df       	rcall	.-148    	; 0x838 <crc16>
+}
+ 8cc:	08 95       	ret
+
+000008ce <send_const>:
+	extern uint8_t RTC_m;
+	extern uint8_t RTC_h;
+	//калибровочные константы каналов измерений
+	for (uint8_t i=0;i<5;i++)
+	{
+	   TX_buff[i]=calibr_cells[i];
+ 8ce:	80 91 2b 01 	lds	r24, 0x012B
+ 8d2:	80 93 c0 02 	sts	0x02C0, r24
+ 8d6:	80 91 2c 01 	lds	r24, 0x012C
+ 8da:	80 93 c1 02 	sts	0x02C1, r24
+ 8de:	80 91 2d 01 	lds	r24, 0x012D
+ 8e2:	80 93 c2 02 	sts	0x02C2, r24
+ 8e6:	80 91 2e 01 	lds	r24, 0x012E
+ 8ea:	80 93 c3 02 	sts	0x02C3, r24
+ 8ee:	80 91 2f 01 	lds	r24, 0x012F
+ 8f2:	80 93 c4 02 	sts	0x02C4, r24
+	//параметры напряжения 5:6 7:8 9:10
+	for (uint8_t i=0;i<3;i++)
+	{
+		
+		//разбиваю uint16_t на два uint8_t 
+		asm volatile(  "mov %[Low],%A[X]" "\n\t"
+ 8f6:	80 91 30 01 	lds	r24, 0x0130
+ 8fa:	90 91 31 01 	lds	r25, 0x0131
+ 8fe:	9c 01       	movw	r18, r24
+ 900:	92 2f       	mov	r25, r18
+ 902:	83 2f       	mov	r24, r19
+ 904:	80 93 c5 02 	sts	0x02C5, r24
+ 908:	90 93 c6 02 	sts	0x02C6, r25
+ 90c:	80 91 32 01 	lds	r24, 0x0132
+ 910:	90 91 33 01 	lds	r25, 0x0133
+ 914:	9c 01       	movw	r18, r24
+ 916:	92 2f       	mov	r25, r18
+ 918:	83 2f       	mov	r24, r19
+ 91a:	80 93 c7 02 	sts	0x02C7, r24
+ 91e:	90 93 c8 02 	sts	0x02C8, r25
+ 922:	80 91 34 01 	lds	r24, 0x0134
+ 926:	90 91 35 01 	lds	r25, 0x0135
+ 92a:	9c 01       	movw	r18, r24
+ 92c:	92 2f       	mov	r25, r18
+ 92e:	83 2f       	mov	r24, r19
+ 930:	80 93 c9 02 	sts	0x02C9, r24
+ 934:	90 93 ca 02 	sts	0x02CA, r25
+		:[Hi]"=&d"(TX_buff[k]),[Low]"=&d"(TX_buff[k+1]):[X]"r"(u_param[i])
+		);		
+		k+=2;
+	}				
+				 
+	TX_buff[11]=ee_read(11); //емкость батареи
+ 938:	8b e0       	ldi	r24, 0x0B	; 11
+ 93a:	71 de       	rcall	.-798    	; 0x61e <ee_read>
+ 93c:	80 93 cb 02 	sts	0x02CB, r24
+	TX_buff[12]=RTC_s; //сек
+ 940:	80 91 3c 01 	lds	r24, 0x013C
+ 944:	80 93 cc 02 	sts	0x02CC, r24
+	TX_buff[13]=RTC_m; //мин
+ 948:	80 91 3d 01 	lds	r24, 0x013D
+ 94c:	80 93 cd 02 	sts	0x02CD, r24
+	TX_buff[14]=RTC_h; //часы
+ 950:	80 91 3e 01 	lds	r24, 0x013E
+ 954:	80 93 ce 02 	sts	0x02CE, r24
+	TX_buff[15]=0;
+ 958:	10 92 cf 02 	sts	0x02CF, r1
+
+	//расчет контрольной суммы
+	crc16(TX_buff,16);		
+ 95c:	80 ec       	ldi	r24, 0xC0	; 192
+ 95e:	92 e0       	ldi	r25, 0x02	; 2
+ 960:	60 e1       	ldi	r22, 0x10	; 16
+ 962:	6a df       	rcall	.-300    	; 0x838 <crc16>
+}
+ 964:	08 95       	ret
+
+00000966 <write_calibr>:
+
+//записывает калибровочные константы
+void write_calibr(void)
+{
+ 966:	1f 93       	push	r17
+ 968:	cf 93       	push	r28
+ 96a:	df 93       	push	r29
+ 96c:	ea e4       	ldi	r30, 0x4A	; 74
+ 96e:	f1 e0       	ldi	r31, 0x01	; 1
+ 970:	ab e2       	ldi	r26, 0x2B	; 43
+ 972:	b1 e0       	ldi	r27, 0x01	; 1
+	extern uint8_t RX_; //счетчик буфера
+	extern uint8_t calibr_cells[]; //5штук
+	extern uint16_t u_param[];
+	  for(uint8_t i=0;i<5;i++)
+		{
+			calibr_cells[i]=RX_buff[i+1];
+ 974:	80 81       	ld	r24, Z
+ 976:	8d 93       	st	X+, r24
+			RX_buff[i+1]=0;
+ 978:	11 92       	st	Z+, r1
+	
+	extern uint8_t RX_buff[]; //буфер приема данных USART
+	extern uint8_t RX_; //счетчик буфера
+	extern uint8_t calibr_cells[]; //5штук
+	extern uint16_t u_param[];
+	  for(uint8_t i=0;i<5;i++)
+ 97a:	21 e0       	ldi	r18, 0x01	; 1
+ 97c:	ef 34       	cpi	r30, 0x4F	; 79
+ 97e:	f2 07       	cpc	r31, r18
+ 980:	c9 f7       	brne	.-14     	; 0x974 <write_calibr+0xe>
+ 982:	c0 e0       	ldi	r28, 0x00	; 0
+ 984:	d0 e0       	ldi	r29, 0x00	; 0
+		}
+		
+	 //переписываем в EEPROM калибровочные константы
+	    for (uint8_t i=0;i<5;i++)
+	     {
+		 ee_write(i,calibr_cells[i]);
+ 986:	fe 01       	movw	r30, r28
+ 988:	e5 5d       	subi	r30, 0xD5	; 213
+ 98a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 98c:	8c 2f       	mov	r24, r28
+ 98e:	60 81       	ld	r22, Z
+ 990:	4e de       	rcall	.-868    	; 0x62e <ee_write>
+ 992:	21 96       	adiw	r28, 0x01	; 1
+			RX_buff[i+1]=0;
+		   	
+		}
+		
+	 //переписываем в EEPROM калибровочные константы
+	    for (uint8_t i=0;i<5;i++)
+ 994:	c5 30       	cpi	r28, 0x05	; 5
+ 996:	d1 05       	cpc	r29, r1
+ 998:	b1 f7       	brne	.-20     	; 0x986 <write_calibr+0x20>
+	//запись напряжений	
+	 uint8_t k=6;	
+	 for(uint8_t i=0;i<3;i++)
+	 {
+		 	//собираем int16_t из двух int8_t. "С" очень криво делает эту операцию
+		 	asm volatile(   "clr %A[RES]"	"\n\t"
+ 99a:	90 91 4f 01 	lds	r25, 0x014F
+ 99e:	80 91 50 01 	lds	r24, 0x0150
+ 9a2:	9c 01       	movw	r18, r24
+ 9a4:	88 27       	eor	r24, r24
+ 9a6:	99 27       	eor	r25, r25
+ 9a8:	82 2f       	mov	r24, r18
+ 9aa:	93 2f       	mov	r25, r19
+ 9ac:	90 93 31 01 	sts	0x0131, r25
+ 9b0:	80 93 30 01 	sts	0x0130, r24
+ 9b4:	90 91 51 01 	lds	r25, 0x0151
+ 9b8:	80 91 52 01 	lds	r24, 0x0152
+ 9bc:	9c 01       	movw	r18, r24
+ 9be:	88 27       	eor	r24, r24
+ 9c0:	99 27       	eor	r25, r25
+ 9c2:	82 2f       	mov	r24, r18
+ 9c4:	93 2f       	mov	r25, r19
+ 9c6:	90 93 33 01 	sts	0x0133, r25
+ 9ca:	80 93 32 01 	sts	0x0132, r24
+ 9ce:	90 91 53 01 	lds	r25, 0x0153
+ 9d2:	80 91 54 01 	lds	r24, 0x0154
+ 9d6:	9c 01       	movw	r18, r24
+ 9d8:	88 27       	eor	r24, r24
+ 9da:	99 27       	eor	r25, r25
+ 9dc:	82 2f       	mov	r24, r18
+ 9de:	93 2f       	mov	r25, r19
+ 9e0:	90 93 35 01 	sts	0x0135, r25
+ 9e4:	80 93 34 01 	sts	0x0134, r24
+ 9e8:	cf e4       	ldi	r28, 0x4F	; 79
+ 9ea:	d1 e0       	ldi	r29, 0x01	; 1
+ 9ec:	15 e0       	ldi	r17, 0x05	; 5
+	 }	
+	 
+	 //перезапись в еепром напряжений
+	  for (uint8_t i=5;i<11;i++)
+	  {
+		  ee_write(i,RX_buff[i+1]);
+ 9ee:	81 2f       	mov	r24, r17
+ 9f0:	69 91       	ld	r22, Y+
+ 9f2:	1d de       	rcall	.-966    	; 0x62e <ee_write>
+		 	);
+	       k+=2;
+	 }	
+	 
+	 //перезапись в еепром напряжений
+	  for (uint8_t i=5;i<11;i++)
+ 9f4:	1f 5f       	subi	r17, 0xFF	; 255
+ 9f6:	1b 30       	cpi	r17, 0x0B	; 11
+ 9f8:	d1 f7       	brne	.-12     	; 0x9ee <write_calibr+0x88>
+	  {
+		  ee_write(i,RX_buff[i+1]);
+	  }
+	  RX_=0;
+ 9fa:	10 92 3a 01 	sts	0x013A, r1
+		
+		
+}
+ 9fe:	df 91       	pop	r29
+ a00:	cf 91       	pop	r28
+ a02:	1f 91       	pop	r17
+ a04:	08 95       	ret
+
+00000a06 <send_log>:
+void send_log()
+{
+	extern uint8_t send_pointer;	
+	extern uint16_t L[];
+	//формирую пакет
+	TX_buff[0]=send_pointer; //№
+ a06:	30 91 47 01 	lds	r19, 0x0147
+ a0a:	30 93 c0 02 	sts	0x02C0, r19
+ a0e:	63 2f       	mov	r22, r19
+ a10:	41 e0       	ldi	r20, 0x01	; 1
+ a12:	50 e0       	ldi	r21, 0x00	; 0
+	
+	for(uint8_t i=1;i<13;i+=2) //количество бит для пересылки
+	{
+		    //младший байт числа uint16_t
+			asm volatile (
+ a14:	e6 2f       	mov	r30, r22
+ a16:	f0 e0       	ldi	r31, 0x00	; 0
+ a18:	ee 0f       	add	r30, r30
+ a1a:	ff 1f       	adc	r31, r31
+ a1c:	e9 5a       	subi	r30, 0xA9	; 169
+ a1e:	fe 4f       	sbci	r31, 0xFE	; 254
+ a20:	80 81       	ld	r24, Z
+ a22:	91 81       	ldd	r25, Z+1	; 0x01
+ a24:	28 2f       	mov	r18, r24
+ a26:	fa 01       	movw	r30, r20
+ a28:	e0 54       	subi	r30, 0x40	; 64
+ a2a:	fd 4f       	sbci	r31, 0xFD	; 253
+ a2c:	20 83       	st	Z, r18
+			"mov %[RES],%A[D16]"	"\n\t"
+			:[RES]"=&d"(TX_buff[i]):[D16]"r"(L[send_pointer])
+			);
+		
+		   //старший
+			asm volatile (
+ a2e:	dc 01       	movw	r26, r24
+ a30:	8b 2f       	mov	r24, r27
+ a32:	81 83       	std	Z+1, r24	; 0x01
+ a34:	6f 5f       	subi	r22, 0xFF	; 255
+ a36:	4e 5f       	subi	r20, 0xFE	; 254
+ a38:	5f 4f       	sbci	r21, 0xFF	; 255
+	extern uint8_t send_pointer;	
+	extern uint16_t L[];
+	//формирую пакет
+	TX_buff[0]=send_pointer; //№
+	
+	for(uint8_t i=1;i<13;i+=2) //количество бит для пересылки
+ a3a:	4d 30       	cpi	r20, 0x0D	; 13
+ a3c:	51 05       	cpc	r21, r1
+ a3e:	51 f7       	brne	.-44     	; 0xa14 <send_log+0xe>
+ a40:	3a 5f       	subi	r19, 0xFA	; 250
+ a42:	30 93 47 01 	sts	0x0147, r19
+			);
+		send_pointer++;
+	}
+	for(uint8_t i=13;i<16;i++)
+	{
+	   TX_buff[i]=0;
+ a46:	10 92 cd 02 	sts	0x02CD, r1
+ a4a:	10 92 ce 02 	sts	0x02CE, r1
+ a4e:	10 92 cf 02 	sts	0x02CF, r1
+	}
+	//расчет контрольной суммы
+	crc16(TX_buff,16);
+ a52:	80 ec       	ldi	r24, 0xC0	; 192
+ a54:	92 e0       	ldi	r25, 0x02	; 2
+ a56:	60 e1       	ldi	r22, 0x10	; 16
+ a58:	ef de       	rcall	.-546    	; 0x838 <crc16>
+	
+	
+}
+ a5a:	08 95       	ret
+
+00000a5c <znak>:
+
+void znak(uint8_t x)
+{
+	extern uint8_t led[3];
+	
+	if (x==5)  //показываю нуль-замер емкости откл
+ a5c:	85 30       	cpi	r24, 0x05	; 5
+ a5e:	19 f4       	brne	.+6      	; 0xa66 <znak+0xa>
+	{
+		
+		//разряды вид на экран "0" "1" "2"
+		led[0]=0;//режим откл
+ a60:	10 92 01 01 	sts	0x0101, r1
+ a64:	03 c0       	rjmp	.+6      	; 0xa6c <znak+0x10>
+	}
+	else //menu=6
+	{
+		//led[0]=1; //вместо единицы отображает 5. Чюдеса. возможно компелятор переоптимизировал код)
+		//tmp=1;
+		led[0]=1; //вот так присваиваю 1))
+ a66:	81 e0       	ldi	r24, 0x01	; 1
+ a68:	80 93 01 01 	sts	0x0101, r24
+		led[1]=14;//  C
+ a6c:	8e e0       	ldi	r24, 0x0E	; 14
+ a6e:	80 93 02 01 	sts	0x0102, r24
+		led[2]=10; //откл все сегменты
+ a72:	8a e0       	ldi	r24, 0x0A	; 10
+ a74:	80 93 03 01 	sts	0x0103, r24
+ a78:	08 95       	ret
+
+00000a7a <disp_inf>:
+	}
+	
+}
+
+void disp_inf(uint8_t mode )
+{
+ a7a:	e8 2f       	mov	r30, r24
+	extern uint16_t system[];
+	extern uint8_t ups_mode;
+	
+	uint8_t led_point; //если ее объявить в начале,имеем при показании тока единицу,вместо запятой.
+	if(mode>1) {led_point=0x40;} //точка для напряжений
+ a7c:	82 30       	cpi	r24, 0x02	; 2
+ a7e:	10 f4       	brcc	.+4      	; 0xa84 <disp_inf+0xa>
+ a80:	60 e2       	ldi	r22, 0x20	; 32
+ a82:	01 c0       	rjmp	.+2      	; 0xa86 <disp_inf+0xc>
+ a84:	60 e4       	ldi	r22, 0x40	; 64
+	else {led_point=0x20;};//точка для тока
+	
+	if(ups_mode==5){led_point=0x60;}; //точка в самом начале, говорит что работает режим замера емкости бат
+ a86:	80 91 3f 01 	lds	r24, 0x013F
+ a8a:	85 30       	cpi	r24, 0x05	; 5
+ a8c:	09 f4       	brne	.+2      	; 0xa90 <disp_inf+0x16>
+ a8e:	60 e6       	ldi	r22, 0x60	; 96
+	
+	if (mode==2){mode=5;}//изменяю формат отображения
+ a90:	e2 30       	cpi	r30, 0x02	; 2
+ a92:	09 f4       	brne	.+2      	; 0xa96 <disp_inf+0x1c>
+ a94:	e5 e0       	ldi	r30, 0x05	; 5
+	hexdec(system[mode],led_point);
+ a96:	f0 e0       	ldi	r31, 0x00	; 0
+ a98:	ee 0f       	add	r30, r30
+ a9a:	ff 1f       	adc	r31, r31
+ a9c:	e5 5e       	subi	r30, 0xE5	; 229
+ a9e:	fe 4f       	sbci	r31, 0xFE	; 254
+ aa0:	80 81       	ld	r24, Z
+ aa2:	91 81       	ldd	r25, Z+1	; 0x01
+ aa4:	9f dd       	rcall	.-1218   	; 0x5e4 <hexdec>
+	
+}
+ aa6:	08 95       	ret
+
+00000aa8 <clear_RX>:
+
+void clear_RX()
+{
+	extern uint8_t RX_buff[];
+	extern uint8_t RX_;
+	RX_buff[0]=0; RX_=0;
+ aa8:	10 92 49 01 	sts	0x0149, r1
+ aac:	10 92 3a 01 	sts	0x013A, r1
+	
+}
+ ab0:	08 95       	ret
+
+00000ab2 <write_cap>:
+	
+}
+
+//вычесляет остаточную емкость батареи, и записывает ее в память
+void write_cap()
+{
+ ab2:	1f 93       	push	r17
+	extern uint8_t C;
+	extern uint32_t C60;
+	C+=asm_divB(); //вычисляет емкость С60/6000
+ ab4:	10 91 45 01 	lds	r17, 0x0145
+ ab8:	27 db       	rcall	.-2482   	; 0x108 <asm_divB>
+ aba:	18 0f       	add	r17, r24
+ abc:	10 93 45 01 	sts	0x0145, r17
+	C60=0;
+ ac0:	10 92 40 01 	sts	0x0140, r1
+ ac4:	10 92 41 01 	sts	0x0141, r1
+ ac8:	10 92 42 01 	sts	0x0142, r1
+ acc:	10 92 43 01 	sts	0x0143, r1
+	
+	ee_write(11,C);//записываю емкость
+ ad0:	8b e0       	ldi	r24, 0x0B	; 11
+ ad2:	61 2f       	mov	r22, r17
+ ad4:	ac dd       	rcall	.-1192   	; 0x62e <ee_write>
+	C=0;	
+ ad6:	10 92 45 01 	sts	0x0145, r1
+}
+ ada:	1f 91       	pop	r17
+ adc:	08 95       	ret
+
+00000ade <cell_capacity>:
+
+
+//uint8_t *minut_flag,uint8_t *mode,uint32_t *Sbuff,uint8_t *C,uint16_t *sys);
+//выполняет подсчет емкости батареи
+void cell_capacity(void)
+{
+ ade:	1f 93       	push	r17
+	extern uint16_t system[];
+	extern uint16_t L[];
+	extern uint8_t log_point;
+	
+	//прошла минута и mode=5
+	if((minut_flag&0b10000000)==128)//&(*mode==5))
+ ae0:	80 91 44 01 	lds	r24, 0x0144
+ ae4:	87 ff       	sbrs	r24, 7
+ ae6:	53 c0       	rjmp	.+166    	; 0xb8e <cell_capacity+0xb0>
+	{
+		minut_flag&=0b01111111; //удаляем флаг
+ ae8:	38 2f       	mov	r19, r24
+ aea:	3f 77       	andi	r19, 0x7F	; 127
+ aec:	30 93 44 01 	sts	0x0144, r19
+	    
+		//каждые 10 минут сохраняю показания в ОЗУ
+		if ((minut_flag%10)==0)  
+ af0:	83 2f       	mov	r24, r19
+ af2:	6a e0       	ldi	r22, 0x0A	; 10
+ af4:	38 d1       	rcall	.+624    	; 0xd66 <__udivmodqi4>
+ af6:	99 23       	and	r25, r25
+ af8:	69 f5       	brne	.+90     	; 0xb54 <cell_capacity+0x76>
+		{
+			//Если массив заполнен не весь
+			if (log_point<180)
+ afa:	20 91 46 01 	lds	r18, 0x0146
+ afe:	24 3b       	cpi	r18, 0xB4	; 180
+ b00:	48 f5       	brcc	.+82     	; 0xb54 <cell_capacity+0x76>
+			{  
+				L[log_point]=system[3];  //Б1
+ b02:	e2 2f       	mov	r30, r18
+ b04:	f0 e0       	ldi	r31, 0x00	; 0
+ b06:	ee 0f       	add	r30, r30
+ b08:	ff 1f       	adc	r31, r31
+ b0a:	e9 5a       	subi	r30, 0xA9	; 169
+ b0c:	fe 4f       	sbci	r31, 0xFE	; 254
+ b0e:	80 91 21 01 	lds	r24, 0x0121
+ b12:	90 91 22 01 	lds	r25, 0x0122
+ b16:	91 83       	std	Z+1, r25	; 0x01
+ b18:	80 83       	st	Z, r24
+				log_point++;
+ b1a:	2f 5f       	subi	r18, 0xFF	; 255
+				L[log_point]=system[5]; //Б2
+ b1c:	e2 2f       	mov	r30, r18
+ b1e:	f0 e0       	ldi	r31, 0x00	; 0
+ b20:	ee 0f       	add	r30, r30
+ b22:	ff 1f       	adc	r31, r31
+ b24:	e9 5a       	subi	r30, 0xA9	; 169
+ b26:	fe 4f       	sbci	r31, 0xFE	; 254
+ b28:	80 91 25 01 	lds	r24, 0x0125
+ b2c:	90 91 26 01 	lds	r25, 0x0126
+ b30:	91 83       	std	Z+1, r25	; 0x01
+ b32:	80 83       	st	Z, r24
+				log_point++;
+ b34:	2f 5f       	subi	r18, 0xFF	; 255
+				L[log_point]=system[0]; //I нагрузки
+ b36:	e2 2f       	mov	r30, r18
+ b38:	f0 e0       	ldi	r31, 0x00	; 0
+ b3a:	ee 0f       	add	r30, r30
+ b3c:	ff 1f       	adc	r31, r31
+ b3e:	e9 5a       	subi	r30, 0xA9	; 169
+ b40:	fe 4f       	sbci	r31, 0xFE	; 254
+ b42:	80 91 1b 01 	lds	r24, 0x011B
+ b46:	90 91 1c 01 	lds	r25, 0x011C
+ b4a:	91 83       	std	Z+1, r25	; 0x01
+ b4c:	80 83       	st	Z, r24
+			    log_point++;
+ b4e:	2f 5f       	subi	r18, 0xFF	; 255
+ b50:	20 93 46 01 	sts	0x0146, r18
+			}
+						
+		}
+	    
+		//подсчет емкости батареи
+	    if (minut_flag<59)	
+ b54:	3b 33       	cpi	r19, 0x3B	; 59
+ b56:	58 f4       	brcc	.+22     	; 0xb6e <cell_capacity+0x90>
+		{
+		   asm_addA(system[0]); //cуммирует ток нагрузки за 60мин		   	     
+ b58:	80 91 1b 01 	lds	r24, 0x011B
+ b5c:	90 91 1c 01 	lds	r25, 0x011C
+ b60:	c1 da       	rcall	.-2686   	; 0xe4 <asm_addA>
+		   minut_flag++;
+ b62:	80 91 44 01 	lds	r24, 0x0144
+ b66:	8f 5f       	subi	r24, 0xFF	; 255
+ b68:	80 93 44 01 	sts	0x0144, r24
+ b6c:	10 c0       	rjmp	.+32     	; 0xb8e <cell_capacity+0xb0>
+		}
+		else
+		{				  
+		  	
+		   C+=asm_divB(); //вычисляет емкость С60/6000
+ b6e:	10 91 45 01 	lds	r17, 0x0145
+ b72:	ca da       	rcall	.-2668   	; 0x108 <asm_divB>
+ b74:	18 0f       	add	r17, r24
+ b76:	10 93 45 01 	sts	0x0145, r17
+		   C60=0;
+ b7a:	10 92 40 01 	sts	0x0140, r1
+ b7e:	10 92 41 01 	sts	0x0141, r1
+ b82:	10 92 42 01 	sts	0x0142, r1
+ b86:	10 92 43 01 	sts	0x0143, r1
+		   minut_flag=0;
+ b8a:	10 92 44 01 	sts	0x0144, r1
+		}
+	}
+	
+	
+}
+ b8e:	1f 91       	pop	r17
+ b90:	08 95       	ret
+
+00000b92 <ups>:
+	system[7]=0; //нижняя батарея
+}
+
+//выполняет все функции бесперебойника
+void ups(uint8_t m,uint8_t s,uint16_t *sys,uint8_t *mode)
+{	
+ b92:	0f 93       	push	r16
+ b94:	1f 93       	push	r17
+ b96:	cf 93       	push	r28
+ b98:	df 93       	push	r29
+ b9a:	78 2f       	mov	r23, r24
+ b9c:	8a 01       	movw	r16, r20
+ b9e:	e9 01       	movw	r28, r18
+	extern uint16_t u_param[];
+	
+	// u_param[0]=1360; break; //верхий порог заряда
+	// u_param[1]=1350; break; //нижний порог,вкл заряд
+	// u_param[2]=1080; break; //напряж откл от нагрузки
+	if (sys[4]>2400) //напряжение есть в сети?
+ ba0:	fa 01       	movw	r30, r20
+ ba2:	80 85       	ldd	r24, Z+8	; 0x08
+ ba4:	91 85       	ldd	r25, Z+9	; 0x09
+ ba6:	81 56       	subi	r24, 0x61	; 97
+ ba8:	99 40       	sbci	r25, 0x09	; 9
+ baa:	08 f4       	brcc	.+2      	; 0xbae <ups+0x1c>
+ bac:	99 c0       	rjmp	.+306    	; 0xce0 <ups+0x14e>
+	{ 		
+		//тоолько включились?прошло 3 сек? включаем заряд
+		if ((*mode==0)&(s>3)){PORTC|=0b000000100; *mode=1;C=0;C60=0;}; //вкл заряда  сброс счетчиков емкости бат
+ bae:	88 81       	ld	r24, Y
+ bb0:	88 23       	and	r24, r24
+ bb2:	79 f4       	brne	.+30     	; 0xbd2 <ups+0x40>
+ bb4:	64 30       	cpi	r22, 0x04	; 4
+ bb6:	68 f0       	brcs	.+26     	; 0xbd2 <ups+0x40>
+ bb8:	42 9a       	sbi	0x08, 2	; 8
+ bba:	81 e0       	ldi	r24, 0x01	; 1
+ bbc:	88 83       	st	Y, r24
+ bbe:	10 92 45 01 	sts	0x0145, r1
+ bc2:	10 92 40 01 	sts	0x0140, r1
+ bc6:	10 92 41 01 	sts	0x0141, r1
+ bca:	10 92 42 01 	sts	0x0142, r1
+ bce:	10 92 43 01 	sts	0x0143, r1
+		//прошло 2 минуты подкл нагрузку к БП и вкл полевик	
+		if ((*mode==1)&(m>1)){PORTC|=0b00011000; *mode=2;}; //вкл заряда 
+ bd2:	88 81       	ld	r24, Y
+ bd4:	81 30       	cpi	r24, 0x01	; 1
+ bd6:	39 f4       	brne	.+14     	; 0xbe6 <ups+0x54>
+ bd8:	72 30       	cpi	r23, 0x02	; 2
+ bda:	28 f0       	brcs	.+10     	; 0xbe6 <ups+0x54>
+ bdc:	88 b1       	in	r24, 0x08	; 8
+ bde:	88 61       	ori	r24, 0x18	; 24
+ be0:	88 b9       	out	0x08, r24	; 8
+ be2:	82 e0       	ldi	r24, 0x02	; 2
+ be4:	88 83       	st	Y, r24
+		
+		if ((*mode>0)&(*mode<3)){balansir();} //балансир батарей
+ be6:	88 81       	ld	r24, Y
+ be8:	81 50       	subi	r24, 0x01	; 1
+ bea:	82 30       	cpi	r24, 0x02	; 2
+ bec:	10 f4       	brcc	.+4      	; 0xbf2 <ups+0x60>
+ bee:	c8 dd       	rcall	.-1136   	; 0x780 <balansir>
+ bf0:	10 c0       	rjmp	.+32     	; 0xc12 <ups+0x80>
+
+//выключает балансир
+void clear_balansir()
+{
+	extern uint16_t system[];
+	OCR1A=0;
+ bf2:	10 92 89 00 	sts	0x0089, r1
+ bf6:	10 92 88 00 	sts	0x0088, r1
+	system[6]=0; //верхняя батарея
+ bfa:	10 92 28 01 	sts	0x0128, r1
+ bfe:	10 92 27 01 	sts	0x0127, r1
+	OCR1B=0;
+ c02:	10 92 8b 00 	sts	0x008B, r1
+ c06:	10 92 8a 00 	sts	0x008A, r1
+	system[7]=0; //нижняя батарея
+ c0a:	10 92 2a 01 	sts	0x012A, r1
+ c0e:	10 92 29 01 	sts	0x0129, r1
+		if ((*mode==1)&(m>1)){PORTC|=0b00011000; *mode=2;}; //вкл заряда 
+		
+		if ((*mode>0)&(*mode<3)){balansir();} //балансир батарей
+		else {clear_balansir();} //выкл
+		//зарядит полностью банки перейдет в режим 3-ждущий буферный.
+		if((*mode==2)&((sys[3]>u_param[0])&(sys[5]>u_param[0])))
+ c12:	40 91 30 01 	lds	r20, 0x0130
+ c16:	50 91 31 01 	lds	r21, 0x0131
+ c1a:	20 e0       	ldi	r18, 0x00	; 0
+ c1c:	f8 01       	movw	r30, r16
+ c1e:	86 81       	ldd	r24, Z+6	; 0x06
+ c20:	97 81       	ldd	r25, Z+7	; 0x07
+ c22:	48 17       	cp	r20, r24
+ c24:	59 07       	cpc	r21, r25
+ c26:	08 f4       	brcc	.+2      	; 0xc2a <ups+0x98>
+ c28:	21 e0       	ldi	r18, 0x01	; 1
+ c2a:	30 e0       	ldi	r19, 0x00	; 0
+ c2c:	f8 01       	movw	r30, r16
+ c2e:	82 85       	ldd	r24, Z+10	; 0x0a
+ c30:	93 85       	ldd	r25, Z+11	; 0x0b
+ c32:	48 17       	cp	r20, r24
+ c34:	59 07       	cpc	r21, r25
+ c36:	08 f4       	brcc	.+2      	; 0xc3a <ups+0xa8>
+ c38:	31 e0       	ldi	r19, 0x01	; 1
+ c3a:	23 23       	and	r18, r19
+ c3c:	30 e0       	ldi	r19, 0x00	; 0
+ c3e:	40 e0       	ldi	r20, 0x00	; 0
+ c40:	50 e0       	ldi	r21, 0x00	; 0
+ c42:	88 81       	ld	r24, Y
+ c44:	82 30       	cpi	r24, 0x02	; 2
+ c46:	11 f4       	brne	.+4      	; 0xc4c <ups+0xba>
+ c48:	41 e0       	ldi	r20, 0x01	; 1
+ c4a:	50 e0       	ldi	r21, 0x00	; 0
+ c4c:	24 23       	and	r18, r20
+ c4e:	35 23       	and	r19, r21
+ c50:	23 2b       	or	r18, r19
+ c52:	19 f0       	breq	.+6      	; 0xc5a <ups+0xc8>
+		{
+			*mode=3;
+ c54:	83 e0       	ldi	r24, 0x03	; 3
+ c56:	88 83       	st	Y, r24
+			PORTC&=0b11111011; //отключить заряд
+ c58:	42 98       	cbi	0x08, 2	; 8
+		}
+		
+		//включить заряд
+		if ((*mode==3)&((sys[3]<u_param[1])&(sys[5]<u_param[1])))
+ c5a:	40 91 32 01 	lds	r20, 0x0132
+ c5e:	50 91 33 01 	lds	r21, 0x0133
+ c62:	20 e0       	ldi	r18, 0x00	; 0
+ c64:	f8 01       	movw	r30, r16
+ c66:	86 81       	ldd	r24, Z+6	; 0x06
+ c68:	97 81       	ldd	r25, Z+7	; 0x07
+ c6a:	84 17       	cp	r24, r20
+ c6c:	95 07       	cpc	r25, r21
+ c6e:	08 f4       	brcc	.+2      	; 0xc72 <ups+0xe0>
+ c70:	21 e0       	ldi	r18, 0x01	; 1
+ c72:	30 e0       	ldi	r19, 0x00	; 0
+ c74:	f8 01       	movw	r30, r16
+ c76:	82 85       	ldd	r24, Z+10	; 0x0a
+ c78:	93 85       	ldd	r25, Z+11	; 0x0b
+ c7a:	84 17       	cp	r24, r20
+ c7c:	95 07       	cpc	r25, r21
+ c7e:	08 f4       	brcc	.+2      	; 0xc82 <ups+0xf0>
+ c80:	31 e0       	ldi	r19, 0x01	; 1
+ c82:	23 23       	and	r18, r19
+ c84:	30 e0       	ldi	r19, 0x00	; 0
+ c86:	40 e0       	ldi	r20, 0x00	; 0
+ c88:	50 e0       	ldi	r21, 0x00	; 0
+ c8a:	88 81       	ld	r24, Y
+ c8c:	83 30       	cpi	r24, 0x03	; 3
+ c8e:	11 f4       	brne	.+4      	; 0xc94 <ups+0x102>
+ c90:	41 e0       	ldi	r20, 0x01	; 1
+ c92:	50 e0       	ldi	r21, 0x00	; 0
+ c94:	24 23       	and	r18, r20
+ c96:	35 23       	and	r19, r21
+ c98:	23 2b       	or	r18, r19
+ c9a:	19 f0       	breq	.+6      	; 0xca2 <ups+0x110>
+		{
+			*mode=2; PORTC|=0b00000100; 
+ c9c:	82 e0       	ldi	r24, 0x02	; 2
+ c9e:	88 83       	st	Y, r24
+ ca0:	42 9a       	sbi	0x08, 2	; 8
+		}
+		
+		//упало ниже нормы опять в режим 2	
+		//режим замера емкости батареи
+		if(*mode==5) 
+ ca2:	88 81       	ld	r24, Y
+ ca4:	85 30       	cpi	r24, 0x05	; 5
+ ca6:	09 f0       	breq	.+2      	; 0xcaa <ups+0x118>
+ ca8:	59 c0       	rjmp	.+178    	; 0xd5c <ups+0x1ca>
+		{			
+			PORTC&=0b11110011; //отключаю заряд и нагрузку от БП, перехожу на работу от батареи
+ caa:	88 b1       	in	r24, 0x08	; 8
+ cac:	83 7f       	andi	r24, 0xF3	; 243
+ cae:	88 b9       	out	0x08, r24	; 8
+			cell_capacity();//замер емкости батареи
+ cb0:	16 df       	rcall	.-468    	; 0xade <cell_capacity>
+			//батареи разряжены!!!
+		    if ((sys[3]<u_param[2])|(sys[5]<u_param[2]))  
+ cb2:	20 91 34 01 	lds	r18, 0x0134
+ cb6:	30 91 35 01 	lds	r19, 0x0135
+ cba:	f8 01       	movw	r30, r16
+ cbc:	86 81       	ldd	r24, Z+6	; 0x06
+ cbe:	97 81       	ldd	r25, Z+7	; 0x07
+ cc0:	82 17       	cp	r24, r18
+ cc2:	93 07       	cpc	r25, r19
+ cc4:	30 f0       	brcs	.+12     	; 0xcd2 <ups+0x140>
+ cc6:	82 85       	ldd	r24, Z+10	; 0x0a
+ cc8:	93 85       	ldd	r25, Z+11	; 0x0b
+ cca:	82 17       	cp	r24, r18
+ ccc:	93 07       	cpc	r25, r19
+ cce:	08 f0       	brcs	.+2      	; 0xcd2 <ups+0x140>
+ cd0:	45 c0       	rjmp	.+138    	; 0xd5c <ups+0x1ca>
+			{
+				write_cap(); //пишу емкость батарей
+ cd2:	ef de       	rcall	.-546    	; 0xab2 <write_cap>
+				PORTC|=0b00011100;//вкл заряда и подкл нагр к БП 
+ cd4:	88 b1       	in	r24, 0x08	; 8
+ cd6:	8c 61       	ori	r24, 0x1C	; 28
+ cd8:	88 b9       	out	0x08, r24	; 8
+			    *mode=1;//возвращаю режим работы
+ cda:	81 e0       	ldi	r24, 0x01	; 1
+ cdc:	88 83       	st	Y, r24
+ cde:	3e c0       	rjmp	.+124    	; 0xd5c <ups+0x1ca>
+
+//выключает балансир
+void clear_balansir()
+{
+	extern uint16_t system[];
+	OCR1A=0;
+ ce0:	10 92 89 00 	sts	0x0089, r1
+ ce4:	10 92 88 00 	sts	0x0088, r1
+	system[6]=0; //верхняя батарея
+ ce8:	10 92 28 01 	sts	0x0128, r1
+ cec:	10 92 27 01 	sts	0x0127, r1
+	OCR1B=0;
+ cf0:	10 92 8b 00 	sts	0x008B, r1
+ cf4:	10 92 8a 00 	sts	0x008A, r1
+	system[7]=0; //нижняя батарея
+ cf8:	10 92 2a 01 	sts	0x012A, r1
+ cfc:	10 92 29 01 	sts	0x0129, r1
+		}
+	}
+	else //нет напр в сети
+	{ 
+		clear_balansir(); //выкл балансиров
+		*mode=0; //позволяет быстро реагировать на появления напр
+ d00:	18 82       	st	Y, r1
+	   //отключить заряд батарей и нагрузку от БП.
+	   PORTC&=0b11110011;	
+ d02:	88 b1       	in	r24, 0x08	; 8
+ d04:	83 7f       	andi	r24, 0xF3	; 243
+ d06:	88 b9       	out	0x08, r24	; 8
+	   cell_capacity(); //замер емкости батарей
+ d08:	ea de       	rcall	.-556    	; 0xade <cell_capacity>
+	  //полное отключение устройств при снижение напряжения на одной из бат.
+	  if ((sys[3]<u_param[2])|(sys[5]<u_param[2]))  
+ d0a:	20 91 34 01 	lds	r18, 0x0134
+ d0e:	30 91 35 01 	lds	r19, 0x0135
+ d12:	f8 01       	movw	r30, r16
+ d14:	86 81       	ldd	r24, Z+6	; 0x06
+ d16:	97 81       	ldd	r25, Z+7	; 0x07
+ d18:	82 17       	cp	r24, r18
+ d1a:	93 07       	cpc	r25, r19
+ d1c:	28 f0       	brcs	.+10     	; 0xd28 <ups+0x196>
+ d1e:	82 85       	ldd	r24, Z+10	; 0x0a
+ d20:	93 85       	ldd	r25, Z+11	; 0x0b
+ d22:	82 17       	cp	r24, r18
+ d24:	93 07       	cpc	r25, r19
+ d26:	d0 f4       	brcc	.+52     	; 0xd5c <ups+0x1ca>
+ d28:	20 e0       	ldi	r18, 0x00	; 0
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ d2a:	48 ec       	ldi	r20, 0xC8	; 200
+ d2c:	50 e0       	ldi	r21, 0x00	; 0
+ d2e:	08 c0       	rjmp	.+16     	; 0xd40 <ups+0x1ae>
+ d30:	fa 01       	movw	r30, r20
+ d32:	31 97       	sbiw	r30, 0x01	; 1
+ d34:	f1 f7       	brne	.-4      	; 0xd32 <ups+0x1a0>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ d36:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ d38:	d9 f7       	brne	.-10     	; 0xd30 <ups+0x19e>
+	  {
+		   //нужно для того что бы не писал в еепром при откл питания.
+		   //емкость питания мк разряжается пожже чем в БП, успевает записать нуль.
+		 for(uint8_t Q=0;Q<10;Q++)
+ d3a:	2f 5f       	subi	r18, 0xFF	; 255
+ d3c:	2a 30       	cpi	r18, 0x0A	; 10
+ d3e:	19 f0       	breq	.+6      	; 0xd46 <ups+0x1b4>
+ d40:	80 e3       	ldi	r24, 0x30	; 48
+ d42:	95 e7       	ldi	r25, 0x75	; 117
+ d44:	f5 cf       	rjmp	.-22     	; 0xd30 <ups+0x19e>
+		 { _delay_ms(3000);}
+		 
+		  write_cap(); //сохраняю емкость батареи в память.
+ d46:	b5 de       	rcall	.-662    	; 0xab2 <write_cap>
+		  PORTC&=0b11100011; //выключаю нагрузку(полевик)
+ d48:	88 b1       	in	r24, 0x08	; 8
+ d4a:	83 7e       	andi	r24, 0xE3	; 227
+ d4c:	88 b9       	out	0x08, r24	; 8
+		  //устраняет эффект включения/выключения нагрузки, пока разряжается
+		  //конденсатор микроконтроллерной платы    
+		   while(sys[4]<2400);//жду электричества,а вдруг мгновенно появится
+ d4e:	f8 01       	movw	r30, r16
+ d50:	80 85       	ldd	r24, Z+8	; 0x08
+ d52:	91 85       	ldd	r25, Z+9	; 0x09
+ d54:	80 56       	subi	r24, 0x60	; 96
+ d56:	99 40       	sbci	r25, 0x09	; 9
+ d58:	08 f4       	brcc	.+2      	; 0xd5c <ups+0x1ca>
+ d5a:	ff cf       	rjmp	.-2      	; 0xd5a <ups+0x1c8>
+	    		
+	}
+		
+	
+	
+}
+ d5c:	df 91       	pop	r29
+ d5e:	cf 91       	pop	r28
+ d60:	1f 91       	pop	r17
+ d62:	0f 91       	pop	r16
+ d64:	08 95       	ret
+
+00000d66 <__udivmodqi4>:
+ d66:	99 1b       	sub	r25, r25
+ d68:	79 e0       	ldi	r23, 0x09	; 9
+ d6a:	04 c0       	rjmp	.+8      	; 0xd74 <__udivmodqi4_ep>
+
+00000d6c <__udivmodqi4_loop>:
+ d6c:	99 1f       	adc	r25, r25
+ d6e:	96 17       	cp	r25, r22
+ d70:	08 f0       	brcs	.+2      	; 0xd74 <__udivmodqi4_ep>
+ d72:	96 1b       	sub	r25, r22
+
+00000d74 <__udivmodqi4_ep>:
+ d74:	88 1f       	adc	r24, r24
+ d76:	7a 95       	dec	r23
+ d78:	c9 f7       	brne	.-14     	; 0xd6c <__udivmodqi4_loop>
+ d7a:	80 95       	com	r24
+ d7c:	08 95       	ret
+
+00000d7e <__udivmodhi4>:
+ d7e:	aa 1b       	sub	r26, r26
+ d80:	bb 1b       	sub	r27, r27
+ d82:	51 e1       	ldi	r21, 0x11	; 17
+ d84:	07 c0       	rjmp	.+14     	; 0xd94 <__udivmodhi4_ep>
+
+00000d86 <__udivmodhi4_loop>:
+ d86:	aa 1f       	adc	r26, r26
+ d88:	bb 1f       	adc	r27, r27
+ d8a:	a6 17       	cp	r26, r22
+ d8c:	b7 07       	cpc	r27, r23
+ d8e:	10 f0       	brcs	.+4      	; 0xd94 <__udivmodhi4_ep>
+ d90:	a6 1b       	sub	r26, r22
+ d92:	b7 0b       	sbc	r27, r23
+
+00000d94 <__udivmodhi4_ep>:
+ d94:	88 1f       	adc	r24, r24
+ d96:	99 1f       	adc	r25, r25
+ d98:	5a 95       	dec	r21
+ d9a:	a9 f7       	brne	.-22     	; 0xd86 <__udivmodhi4_loop>
+ d9c:	80 95       	com	r24
+ d9e:	90 95       	com	r25
+ da0:	bc 01       	movw	r22, r24
+ da2:	cd 01       	movw	r24, r26
+ da4:	08 95       	ret
+
+00000da6 <_exit>:
+ da6:	f8 94       	cli
+
+00000da8 <__stop_program>:
+ da8:	ff cf       	rjmp	.-2      	; 0xda8 <__stop_program>

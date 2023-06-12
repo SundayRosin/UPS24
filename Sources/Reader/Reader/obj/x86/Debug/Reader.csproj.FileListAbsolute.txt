@@ -1,0 +1,9 @@
+C:\Texnix\UPS_KNET\Reader\Reader\bin\Debug\Reader.exe
+C:\Texnix\UPS_KNET\Reader\Reader\bin\Debug\Reader.pdb
+C:\Texnix\UPS_KNET\Reader\Reader\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Texnix\UPS_KNET\Reader\Reader\obj\x86\Debug\Reader.Form1.resources
+C:\Texnix\UPS_KNET\Reader\Reader\obj\x86\Debug\Reader.Properties.Resources.resources
+C:\Texnix\UPS_KNET\Reader\Reader\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Texnix\UPS_KNET\Reader\Reader\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Texnix\UPS_KNET\Reader\Reader\obj\x86\Debug\Reader.exe
+C:\Texnix\UPS_KNET\Reader\Reader\obj\x86\Debug\Reader.pdb
